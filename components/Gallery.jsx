@@ -20,6 +20,23 @@ function Placeholder({ work }) {
   );
 }
 
+// work.video(유튜브/비메오 embed URL)에서 ID를 뽑아 자동재생+음소거+반복 재생되는
+// 미리보기 src를 만듭니다. 타일에 로컬 mp4(preview)가 없을 때, 호버 시 이걸로 대신합니다.
+function buildHoverPreviewSrc(video) {
+  if (!video) return null;
+  const yt = video.match(/youtube\.com\/embed\/([^?&]+)/);
+  if (yt) {
+    const id = yt[1];
+    return `https://www.youtube.com/embed/${id}?autoplay=1&mute=1&controls=0&loop=1&playlist=${id}&modestbranding=1&playsinline=1&rel=0&showinfo=0`;
+  }
+  const vimeo = video.match(/player\.vimeo\.com\/video\/(\d+)/);
+  if (vimeo) {
+    const id = vimeo[1];
+    return `https://player.vimeo.com/video/${id}?autoplay=1&muted=1&loop=1&background=1`;
+  }
+  return null;
+}
+
 /**
  * 풀블리드 갤러리 — galleryKey에 따라 WORKS를 필터링해서 보여줍니다.
  *   "2d3d" | "ai" | "branding" → 해당 section 작품만
@@ -29,6 +46,9 @@ function Placeholder({ work }) {
 export default function Gallery({ galleryKey }) {
   const gridRef = useRef(null);
   const [openId, setOpenId] = useState(null);
+  // 로컬 mp4(preview)가 없는 작품은, 호버 중일 때만 유튜브/비메오 iframe을 마운트해서
+  // 자동재생 미리보기를 보여줍니다(마우스를 떼면 iframe을 떼어내 재생도 같이 멈춥니다).
+  const [hoveredId, setHoveredId] = useState(null);
 
   const list =
     galleryKey === "featured"
@@ -65,11 +85,12 @@ export default function Gallery({ galleryKey }) {
   const reduceMotion = () =>
     typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  const handleEnter = (e) => {
+  const handleEnter = (e, id) => {
     const v = e.currentTarget.querySelector("video");
     if (v) v.play().catch(() => {});
     if (!reduceMotion()) {
-      const media = e.currentTarget.querySelectorAll("img, video, .work-card__placeholder");
+      setHoveredId(id);
+      const media = e.currentTarget.querySelectorAll("img, video, iframe, .work-card__placeholder");
       gsap.to(media, { scale: 1.05, duration: 0.6, ease: "power3.out" });
     }
   };
@@ -80,7 +101,8 @@ export default function Gallery({ galleryKey }) {
       v.pause();
       v.currentTime = 0;
     }
-    const media = e.currentTarget.querySelectorAll("img, video, .work-card__placeholder");
+    setHoveredId(null);
+    const media = e.currentTarget.querySelectorAll("img, video, iframe, .work-card__placeholder");
     gsap.to(media, { scale: 1, duration: 0.6, ease: "power3.out" });
   };
 
@@ -89,14 +111,16 @@ export default function Gallery({ galleryKey }) {
   return (
     <>
       <div className="gallery" ref={gridRef} style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}>
-        {list.map((w) => (
+        {list.map((w) => {
+          const hoverPreviewSrc = !w.preview && hoveredId === w.id ? buildHoverPreviewSrc(w.video) : null;
+          return (
           <article
             key={w.id}
             className="gallery__item"
             tabIndex={0}
             role="button"
             aria-label={`${w.title} 영상 보기`}
-            onMouseEnter={handleEnter}
+            onMouseEnter={(e) => handleEnter(e, w.id)}
             onMouseLeave={handleLeave}
             onClick={() => setOpenId(w.id)}
             onKeyDown={(e) => {
@@ -111,13 +135,24 @@ export default function Gallery({ galleryKey }) {
             ) : (
               <Placeholder work={w} />
             )}
-            {w.preview ? <video src={w.preview} muted loop playsInline preload="none" /> : null}
+            {w.preview ? (
+              <video src={w.preview} muted loop playsInline preload="none" />
+            ) : hoverPreviewSrc ? (
+              <iframe
+                className="gallery__item-preview"
+                src={hoverPreviewSrc}
+                title={`${w.title} 미리보기`}
+                allow="autoplay; encrypted-media"
+                frameBorder="0"
+              />
+            ) : null}
             <div className="gallery__caption">
               <p className="gallery__title">{w.title}</p>
               <p className="gallery__year">{w.year}</p>
             </div>
           </article>
-        ))}
+          );
+        })}
       </div>
       <Modal work={openWork} onClose={() => setOpenId(null)} />
     </>

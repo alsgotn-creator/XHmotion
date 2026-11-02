@@ -2,7 +2,8 @@ import { Fragment } from "react";
 import Link from "next/link";
 import Hero from "@/components/Hero";
 import Gallery from "@/components/Gallery";
-import AboutServiceCurtain from "@/components/AboutServiceCurtain";
+import LectureFeature from "@/components/LectureFeature";
+import AboutService from "@/components/AboutService";
 import { TOOLS } from "@/data/tools";
 
 const MARQUEE_WORDS = ["AI", "2D", "3D", "Graphic", "Lecture"];
@@ -51,8 +52,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===== About → Services(출강·강의 하위에 Lecture 포함): 스크롤에 핀 고정된 커튼 트랜지션 ===== */}
-      <AboutServiceCurtain />
+      {/* ===== Lecture: 포트폴리오와 나란한 두 번째 축 — 영상 섹션 바로 다음, 크게 ===== */}
+      <LectureFeature />
+
+      {/* ===== About + Services: 좌우 반반 ===== */}
+      <AboutService />
     </>
   );
 }

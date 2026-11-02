@@ -13,7 +13,7 @@ export default function LecturePage() {
         <div className="container reveal">
           <p className="eyebrow">Lecture</p>
           <h1 className="title-xl">출강 · 강의</h1>
-          <p className="lead">현업 모션 디자이너의 실무 노하우를 그대로 전합니다. 대상과 목적에 맞게 커리큘럼을 맞춤 구성해 드려요.</p>
+          <p className="lead">모션그래픽 실무부터 AI 웹·영상 제작, 업무 자동화(AX)까지. 현업에서 직접 쓰는 노하우를 대상과 목적에 맞게 커리큘럼으로 구성해 드립니다.</p>
         </div>
       </section>
 
@@ -63,63 +63,173 @@ export default function LecturePage() {
               <p className="eyebrow">Curriculum</p>
               <h2 className="title-lg">강의 주제</h2>
             </div>
-            <p className="lead">아래 주제를 조합하거나, 원하는 내용으로 새로 구성할 수 있어요.</p>
+            <p className="lead">아래 주제를 조합하거나, 원하는 내용으로 새로 구성할 수 있어요. 가격은 예상 기준이며 인원 · 지역 · 난이도에 따라 상담 후 확정됩니다.</p>
           </div>
 
           <div className="curriculum">
             <div className="course reveal">
               <p className="course__num">01</p>
               <div>
-                <h3 className="course__title">After Effects 기초</h3>
-                <span className="course__level">입문</span>
+                <h3 className="course__title">AI 웹페이지 제작 · 배포</h3>
+                <span className="course__level">입문 · 실무</span>
               </div>
               <div className="course__desc">
-                툴이 처음인 분도 따라올 수 있는 기초 과정.
+                AI 툴로 기획부터 제작, 실제 배포까지 혼자 끝내는 과정.
                 <ul>
-                  <li>인터페이스와 작업 흐름 이해</li>
-                  <li>키프레임 · 그래프 에디터로 자연스러운 움직임 만들기</li>
-                  <li>텍스트 애니메이션 · 셰이프 레이어</li>
+                  <li>요구사항 정리 · 레퍼런스 리서치</li>
+                  <li>AI 코딩/디자인 툴로 레이아웃 · 카피 · 이미지 제작</li>
+                  <li>Vercel 등으로 실제 배포, 도메인 연결까지</li>
                 </ul>
               </div>
-              <p className="course__time">8시간 ~</p>
+              <div className="course__time-wrap">
+
+                <p className="course__time">8시간 ~</p>
+
+                <p className="course__price">1:1 72만원 ~ · 그룹(인당) 30만원 ~</p>
+
+              </div>
             </div>
 
             <div className="course reveal">
               <p className="course__num">02</p>
               <div>
-                <h3 className="course__title">모션그래픽 실무</h3>
-                <span className="course__level">중급</span>
+                <h3 className="course__title">AI 영상 제작 & 포트폴리오 제작</h3>
+                <span className="course__level">전체</span>
               </div>
               <div className="course__desc">
-                실제 클라이언트 작업 방식을 그대로 경험하는 과정.
+                생성형 AI 영상 · 이미지 툴을 실무 워크플로우에 결합하는 과정.
                 <ul>
-                  <li>기획 · 스토리보드 · 스타일 프레임</li>
-                  <li>모션 원리(Easing, Timing, Overlap) 적용</li>
-                  <li>렌더링 · 납품 규격 · 협업 팁</li>
+                  <li>AI 영상 · 이미지 생성 툴로 소스 · 레퍼런스 제작</li>
+                  <li>기존 편집 · 모션그래픽 워크플로우와 결합</li>
+                  <li>포트폴리오용 쇼릴 기획 및 완성</li>
                 </ul>
               </div>
-              <p className="course__time">12시간 ~</p>
+              <div className="course__time-wrap">
+
+                <p className="course__time">6시간 ~</p>
+
+                <p className="course__price">1:1 54만원 ~ · 그룹(인당) 24만원 ~</p>
+
+              </div>
             </div>
 
             <div className="course reveal">
               <p className="course__num">03</p>
               <div>
-                <h3 className="course__title">Cinema 4D 3D 모션</h3>
-                <span className="course__level">중급</span>
+                <h3 className="course__title">AX(업무 자동화) 강의</h3>
+                <span className="course__level">기업 · 팀</span>
               </div>
               <div className="course__desc">
-                2D 모션 디자이너를 위한 3D 입문.
+                반복 업무를 AI로 자동화하는 실무 중심 기업 강의.
                 <ul>
-                  <li>모델링 · 머티리얼 · 라이팅 기초</li>
-                  <li>MoGraph로 만드는 3D 모션</li>
-                  <li>After Effects 와의 합성 워크플로우</li>
+                  <li>업무 프로세스 분석, 자동화 포인트 도출</li>
+                  <li>AI 에이전트 · 자동화 툴로 실제 업무에 적용</li>
+                  <li>팀 적용 가이드 및 유지보수 방법 공유</li>
                 </ul>
               </div>
-              <p className="course__time">12시간 ~</p>
+              <div className="course__time-wrap">
+
+                <p className="course__time">4시간 ~ (기업 출강)</p>
+
+                <p className="course__price">시간당 25만원 ~ (인원 · 범위 협의)</p>
+
+              </div>
             </div>
 
             <div className="course reveal">
               <p className="course__num">04</p>
+              <div>
+                <h3 className="course__title">모션그래픽 포트폴리오 1:1 코칭</h3>
+                <span className="course__level">3개월 집중</span>
+              </div>
+              <div className="course__desc">
+                3개월간 밀착 코칭으로 취업 · 이직용 포트폴리오를 완성하는 과정.
+                <ul>
+                  <li>월 4회 1:1 피드백 세션 (온라인/오프라인)</li>
+                  <li>기획 · 제작 · 보정 전 과정 코칭</li>
+                  <li>최종 데모릴 완성 및 이력서 · 포트폴리오 구성 조언</li>
+                </ul>
+              </div>
+              <div className="course__time-wrap">
+
+                <p className="course__time">3개월 · 월 4회</p>
+
+                <p className="course__price">월 60만원 (3개월 160만원, 일괄결제 할인)</p>
+
+              </div>
+            </div>
+
+            <div className="course reveal">
+              <p className="course__num">05</p>
+              <div>
+                <h3 className="course__title">2D 모션그래픽 (After Effects)</h3>
+                <span className="course__level">입문 · 중급</span>
+              </div>
+              <div className="course__desc">
+                툴이 처음인 분도 따라올 수 있는 기초부터, 실무 작업 방식까지.
+                <ul>
+                  <li>인터페이스와 작업 흐름, 키프레임 · 그래프 에디터</li>
+                  <li>기획 · 스토리보드 · 스타일 프레임 → 실제 제작</li>
+                  <li>렌더링 · 납품 규격 · 협업 팁</li>
+                </ul>
+              </div>
+              <div className="course__time-wrap">
+
+                <p className="course__time">8시간 ~</p>
+
+                <p className="course__price">1:1 72만원 ~ · 그룹(인당) 32만원 ~</p>
+
+              </div>
+            </div>
+
+            <div className="course reveal">
+              <p className="course__num">06</p>
+              <div>
+                <h3 className="course__title">3D 모션그래픽 (Cinema 4D)</h3>
+                <span className="course__level">중급</span>
+              </div>
+              <div className="course__desc">
+                2D 모션 디자이너를 위한 3D 입문 과정.
+                <ul>
+                  <li>모델링 · 머티리얼 · 라이팅 기초</li>
+                  <li>MoGraph로 만드는 3D 모션</li>
+                  <li>After Effects와의 합성 워크플로우</li>
+                </ul>
+              </div>
+              <div className="course__time-wrap">
+
+                <p className="course__time">12시간 ~</p>
+
+                <p className="course__price">1:1 108만원 ~ · 그룹(인당) 45만원 ~</p>
+
+              </div>
+            </div>
+
+            <div className="course reveal">
+              <p className="course__num">07</p>
+              <div>
+                <h3 className="course__title">촬영 · 기획 강의</h3>
+                <span className="course__level">입문 · 중급</span>
+              </div>
+              <div className="course__desc">
+                영상 기획부터 촬영 현장 실무까지 다루는 과정.
+                <ul>
+                  <li>기획안 · 콘티 작성법</li>
+                  <li>카메라 세팅, 조명, 구도 기초</li>
+                  <li>촬영 실습 및 현장 피드백</li>
+                </ul>
+              </div>
+              <div className="course__time-wrap">
+
+                <p className="course__time">6시간 ~</p>
+
+                <p className="course__price">1:1 54만원 ~ · 그룹(인당) 24만원 ~</p>
+
+              </div>
+            </div>
+
+            <div className="course reveal">
+              <p className="course__num">08</p>
               <div>
                 <h3 className="course__title">UI 모션 & Lottie</h3>
                 <span className="course__level">중급</span>
@@ -132,23 +242,13 @@ export default function LecturePage() {
                   <li>개발자 협업과 에셋 최적화</li>
                 </ul>
               </div>
-              <p className="course__time">6시간 ~</p>
-            </div>
+              <div className="course__time-wrap">
 
-            <div className="course reveal">
-              <p className="course__num">05</p>
-              <div>
-                <h3 className="course__title">AI 툴과 모션 디자인</h3>
-                <span className="course__level">전체</span>
+                <p className="course__time">6시간 ~</p>
+
+                <p className="course__price">1:1 54만원 ~ · 그룹(인당) 24만원 ~</p>
+
               </div>
-              <div className="course__desc">
-                생성형 AI를 모션 작업에 실용적으로 활용하는 방법.
-                <ul>
-                  <li>이미지 · 영상 생성 툴로 레퍼런스와 소스 만들기</li>
-                  <li>기존 워크플로우와 결합하는 방법</li>
-                </ul>
-              </div>
-              <p className="course__time">3시간 ~</p>
             </div>
           </div>
         </div>
@@ -189,34 +289,38 @@ export default function LecturePage() {
         <div className="container history">
           <div className="reveal">
             <p className="eyebrow">History</p>
-            <h2 className="title-lg">출강 이력</h2>
+            <h2 className="title-lg">출강 · 활동 이력</h2>
           </div>
-          {/* 실제 이력으로 교체하세요 */}
           <ul className="history__list reveal">
             <li>
-              <span className="history__year">2026</span>
-              <span className="history__org">○○대학교 시각디자인과</span>
-              <span className="history__type">특강</span>
+              <span className="history__year">기업</span>
+              <span className="history__org">KT</span>
+              <span className="history__type">사내 디자인 · 영상 교육</span>
             </li>
             <li>
-              <span className="history__year">2026</span>
-              <span className="history__org">○○ 주식회사 디자인팀</span>
-              <span className="history__type">기업 출강</span>
+              <span className="history__year">기업</span>
+              <span className="history__org">SKT</span>
+              <span className="history__type">사내 디자인 · 영상 교육</span>
             </li>
             <li>
-              <span className="history__year">2025</span>
-              <span className="history__org">○○ 디자인 아카데미</span>
-              <span className="history__type">정규 과정</span>
+              <span className="history__year">기관</span>
+              <span className="history__org">공공기관</span>
+              <span className="history__type">실무자 대상 특강</span>
             </li>
             <li>
-              <span className="history__year">2025</span>
-              <span className="history__org">○○ 콘텐츠진흥원</span>
-              <span className="history__type">워크숍</span>
+              <span className="history__year">플랫폼</span>
+              <span className="history__org">숨고</span>
+              <span className="history__type">모션그래픽 · 영상 1:1 과외 다수 진행</span>
             </li>
             <li>
-              <span className="history__year">2024</span>
-              <span className="history__org">○○예술대학교 영상학과</span>
-              <span className="history__type">특강</span>
+              <span className="history__year">개인</span>
+              <span className="history__org">1:1 과외 · 코칭</span>
+              <span className="history__type">포트폴리오 · 툴 집중 레슨</span>
+            </li>
+            <li>
+              <span className="history__year">커뮤니티</span>
+              <span className="history__org">디자인 커뮤니티</span>
+              <span className="history__type">커뮤니티 운영 및 세미나 진행</span>
             </li>
           </ul>
         </div>

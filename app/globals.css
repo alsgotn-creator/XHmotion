@@ -579,110 +579,56 @@ body.is-locked { overflow: hidden; }
 .stats__num sup { font-size: 0.5em; color: var(--c-accent); }
 .stats__label { margin-top: 10px; font-size: 14px; color: var(--c-text-sub); }
 
-/* ---------- About→Services 커튼 트랜지션 ---------- */
-.about-curtain { position: relative; height: 560vh; }
-.about-curtain__pin {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  overflow: hidden;
-  /* 단색이 아니라 은은한 그라디언트 — 트랜지션(ABOUT 라벨 ↔ 사진) 동안 밋밋해 보이지 않도록 */
-  background: radial-gradient(120% 130% at 50% 0%, #1c1c1c 0%, #0a0a0a 55%, #000 100%);
-}
-
-.about-curtain__field {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  transform-origin: center top;
-  will-change: transform;
-}
-.about-curtain__bg { position: absolute; inset: 0; will-change: transform; }
-.about-curtain__bg-img { width: 100%; height: 100%; object-fit: cover; }
-.about-curtain__scrim {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,.4) 0%, rgba(0,0,0,.45) 45%, rgba(0,0,0,.88) 100%);
-}
-.about-curtain__content {
+/* ---------- Lecture (포트폴리오와 나란한 두 번째 축 — 작품 섹션 바로 다음, 크게) ---------- */
+.lecture-feature {
   position: relative;
-  z-index: 2;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: clamp(28px, 4vw, 48px);
   color: #fff;
+  background: var(--c-bg);
+  overflow: hidden;
 }
-.about-curtain__headline { color: #fff; }
-.mask-line { display: block; overflow: hidden; }
-.mask-line > * { display: inline-block; will-change: transform; }
+.lecture-feature__dissolve { position: relative; will-change: opacity; }
+.lecture-feature__bg { position: absolute; inset: 0; }
+.lecture-feature__bg-img { width: 100%; height: 100%; object-fit: cover; }
+/* 배경 사진은 임시(/assets/images/lecture-bg.jpg) — 강의 현장 사진으로 교체하세요. */
+.lecture-feature__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.6) 45%, rgba(0,0,0,.88) 100%);
+}
+.lecture-feature__content { position: relative; z-index: 2; max-width: 760px; }
+.lecture-feature__content .lead { color: rgba(255,255,255,.72); margin-top: 20px; }
+.lecture-feature__topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 32px;
+}
+.lecture-feature__topics li {
+  font-size: 13px;
+  padding: 8px 16px;
+  border: 1px solid rgba(255,255,255,.3);
+  border-radius: 999px;
+  color: rgba(255,255,255,.85);
+}
+.lecture-feature__stats { margin-top: 40px; border-top-color: rgba(255,255,255,.2); }
+.lecture-feature__stats .stats__label { color: rgba(255,255,255,.55); }
+.lecture-feature .btn { margin-top: 40px; }
 
-.about-curtain__row {
+/* ---------- About + Services (좌우 반반) ---------- */
+.about-service__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(32px, 5vw, 72px);
-  max-width: 900px;
+  gap: clamp(48px, 6vw, 96px);
 }
-.about-curtain__text { font-size: 17px; color: rgba(255,255,255,.72); }
-.about-curtain__text p + p { margin-top: 16px; }
-.about-curtain__stats {
-  grid-template-columns: repeat(3, 1fr);
-  margin-top: 0;
-  padding-top: 0;
-  border-top: 0;
-  gap: 16px;
-  align-content: start;
-}
-.about-curtain__stats .stats__label { color: rgba(255,255,255,.55); }
-
-/* 중앙에 뜨는 큰 라벨 (About / Services) — 디졸브로 천천히 나타났다 사라짐 */
-.about-curtain__label {
-  position: absolute;
-  inset: 0;
-  z-index: 6;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  margin: 0;
-  color: #fff;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  font-size: clamp(64px, 13vw, 200px);
-  text-transform: uppercase;
-  mix-blend-mode: difference;
-  will-change: transform, opacity;
-}
-
-.about-curtain__services {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  /* 단색이 아니라 은은한 그라디언트 — SERVICES 라벨이 걷힌 뒤에도 배경이 밋밋하지 않도록 */
-  background: linear-gradient(165deg, #f4f4f4 0%, #ebebeb 55%, #e2e2e2 100%);
-  color: #0d0d0d;
-  padding: clamp(48px, 6vw, 72px) 0;
-  overflow: auto;
-}
+.about-service__text { font-size: 17px; color: var(--c-text-sub); max-width: 480px; }
+.about-service__text + .about-service__text { margin-top: 16px; }
+.about-service__service-grid { margin-top: clamp(32px, 4vw, 48px); }
 
 @media (max-width: 860px) {
-  .about-curtain__row { grid-template-columns: 1fr; }
-  .about-curtain { height: 620vh; }
+  .about-service__grid { grid-template-columns: 1fr; gap: 64px; }
 }
-
 @media (prefers-reduced-motion: reduce) {
-  .about-curtain { height: auto; }
-  .about-curtain__pin { position: relative; height: auto; display: flex; flex-direction: column; }
-  .about-curtain__field { position: relative; opacity: 1 !important; transform: none !important; border-radius: 0 !important; height: 100vh; }
-  .about-curtain__services { position: relative; opacity: 1 !important; transform: none !important; }
-  .about-curtain__label { display: none; }
-  .mask-line > *, .about-curtain__text, .about-curtain__stats, .section-head, .services {
-    transform: none !important;
-    opacity: 1 !important;
-  }
+  .lecture-feature__dissolve, .about-service__col { opacity: 1 !important; transform: none !important; }
 }
 
 /* ---------- 서비스 (01~04, 여백 없이 꽉 찬 2×2 사분면) ---------- */
@@ -710,24 +656,13 @@ body.is-locked { overflow: hidden; }
 .service__title { font-size: clamp(22px, 2.6vw, 32px); font-weight: 700; }
 .service__desc { font-size: 15px; color: rgba(13, 13, 13, 0.55); transition: color 0.3s var(--ease); }
 
-/* 04 출강·강의 하위구조 — Lecture 안내 (2×2 그리드 아래, 04 카드와 이어지는 자리) */
-.service-lecture {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: clamp(24px, 4vw, 48px);
-  margin-top: 36px;
-  padding-top: 36px;
-  border-top: 1px solid rgba(0, 0, 0, 0.12);
-}
-.service-lecture .lead { margin-top: 10px; color: rgba(13, 13, 13, 0.6); }
-.service-lecture .btn--primary { background: #0d0d0d; color: #fff; }
-.service-lecture .btn--primary:hover { background: var(--c-accent); color: #fff; }
+/* 04 출강·강의 카드 — 통째로 /lecture 링크 */
+.service--link .arrow { display: inline-block; margin-left: 4px; transition: transform 0.3s var(--ease); }
+.service--link:hover .arrow { transform: translateX(4px); }
 
 @media (max-width: 560px) {
   .services { grid-template-columns: 1fr; border-left: 0; }
   .service { height: auto; border-right: 0; padding: 32px 0; }
-  .service-lecture { grid-template-columns: 1fr; align-items: start; }
   .stats { grid-template-columns: 1fr 1fr; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -777,7 +712,9 @@ body.is-locked { overflow: hidden; }
 .course__desc ul { margin-top: 10px; }
 .course__desc li { padding-left: 14px; position: relative; }
 .course__desc li::before { content: ""; position: absolute; left: 0; top: 0.75em; width: 5px; height: 1px; background: currentColor; }
+.course__time-wrap { grid-column: 4; }
 .course__time { text-align: right; font-size: 14px; color: var(--c-text-sub); }
+.course__price { margin-top: 6px; text-align: right; font-size: 14px; font-weight: 700; color: var(--c-accent); }
 
 /* ---------- 진행 과정 ---------- */
 .process {
@@ -816,7 +753,7 @@ body.is-locked { overflow: hidden; }
 .history { display: grid; grid-template-columns: 1fr 2fr; gap: clamp(40px, 6vw, 96px); }
 .history__list li {
   display: grid;
-  grid-template-columns: 80px 1fr auto;
+  grid-template-columns: 96px 1fr auto;
   gap: 16px;
   padding: 20px 0;
   border-bottom: 1px solid var(--c-line);
@@ -860,14 +797,15 @@ body.is-locked { overflow: hidden; }
   .formats { grid-template-columns: repeat(2, 1fr); }
   .course { grid-template-columns: 56px 1fr; }
   .course__desc { grid-column: 2; }
-  .course__time { grid-column: 2; text-align: left; }
+  .course__time-wrap { grid-column: 2; }
+  .course__time, .course__price { text-align: left; }
   .process { grid-template-columns: repeat(2, 1fr); gap: 48px 0; }
   .process li::after { display: none; }
   .history { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) {
   .formats, .process { grid-template-columns: 1fr; }
-  .history__list li { grid-template-columns: 56px 1fr; }
+  .history__list li { grid-template-columns: 72px 1fr; }
   .history__type { grid-column: 2; }
 }
 
@@ -980,6 +918,15 @@ body { animation: pageIn 0.5s var(--ease); }
 }
 .gallery__item video { opacity: 0; transition: opacity 0.4s ease, filter 0.4s ease, transform 0.6s var(--ease); }
 .gallery__item:hover video { opacity: 1; }
+/* 로컬 mp4가 없는 작품은 호버 시 유튜브/비메오 iframe으로 자동재생 미리보기 */
+.gallery__item-preview {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  pointer-events: none;
+}
 .gallery__item .work-card__placeholder {
   position: absolute;
   inset: 0;

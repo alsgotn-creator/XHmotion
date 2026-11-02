@@ -16,7 +16,7 @@ export default function Works2d3dPage() {
         </div>
       </section>
 
-      <section className="section" style={{ paddingTop: 0 }}>
+      <section className="section" style={{ paddingTop: 0, paddingBottom: 0 }}>
         <Gallery galleryKey="2d3d" />
       </section>
     </>

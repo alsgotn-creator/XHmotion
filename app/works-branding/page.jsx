@@ -16,7 +16,7 @@ export default function WorksBrandingPage() {
         </div>
       </section>
 
-      <section className="section" style={{ paddingTop: 0 }}>
+      <section className="section" style={{ paddingTop: 0, paddingBottom: 0 }}>
         <Gallery galleryKey="branding" />
       </section>
     </>

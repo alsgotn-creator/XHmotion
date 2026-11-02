@@ -15,7 +15,7 @@ export default function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  // 헤더가 지금 어두운 배경(히어로 영상 / About 진입부의 어두운 사진·그라디언트) 위에
+  // 헤더가 지금 어두운 배경(히어로 영상 / Lecture 섹션의 사진·스크림) 위에
   // 떠 있는지 — 그 구간에서만 밝은 글자색을 쓰고, 그 외(대부분 밝은 배경)엔 기본(어두운)
   // 글자색을 씁니다. 헤더엔 배경색이 없어서(투명) 지금 뒤에 뭐가 있는지 직접 계산합니다.
   const [onDark, setOnDark] = useState(false);
@@ -34,26 +34,32 @@ export default function Header() {
       return;
     }
 
+    // 어두운 배경(사진/영상 + 스크림) 위에 헤더가 떠 있는 동안인지 — 해당 섹션이
+    // 뷰포트 맨 위(헤더가 있는 자리)를 지금 덮고 있는지로 판단합니다.
+    const isUnderHeader = (el) => {
+      if (!el) return false;
+      const rect = el.getBoundingClientRect();
+      return rect.top <= 0 && rect.bottom > 0;
+    };
+
+    // Lecture 섹션은 고정 어두움이 아니라 뷰포트 진입/이탈 구간에서 디졸브(opacity)로
+    // 나타났다 사라집니다(LectureFeature.jsx의 useScroll offset: ["start end","end start"],
+    // 투명도 키프레임 [0, 0.22, 0.78, 1]). 헤더 글자색도 같은 구간에서만 밝게 바꿔서,
+    // 아직 거의 안 보이는(투명한) 사진 위에서 미리 밝은 글자로 바뀌지 않도록 합니다.
+    const dissolveProgress = (el) => {
+      if (!el) return null;
+      const rect = el.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const total = vh + rect.height;
+      if (total <= 0) return null;
+      return Math.min(1, Math.max(0, (vh - rect.top) / total));
+    };
+
     const compute = () => {
-      const heroEl = document.querySelector(".hero");
-      const heroDark = heroEl ? heroEl.getBoundingClientRect().bottom > 0 : false;
-
-      // About→Services 구간: 사진(어두운 스크림)이 보이는 동안은 어두운 배경,
-      // 커튼 컴포넌트의 크로스페이드 타이밍(about-curtain__pin → __services)과 맞춰
-      // Services의 밝은 그라디언트가 충분히 드러난 뒤(progress ≈ 0.76)부터 밝은 배경으로 간주합니다.
-      const aboutEl = document.querySelector(".about-curtain");
-      let aboutDark = false;
-      if (aboutEl) {
-        const rect = aboutEl.getBoundingClientRect();
-        const top = window.scrollY + rect.top;
-        const scrollable = aboutEl.offsetHeight - window.innerHeight;
-        if (scrollable > 0) {
-          const progress = (window.scrollY - top) / scrollable;
-          aboutDark = progress >= 0 && progress < 0.76;
-        }
-      }
-
-      setOnDark(heroDark || aboutDark);
+      const heroDark = isUnderHeader(document.querySelector(".hero"));
+      const lectureProgress = dissolveProgress(document.querySelector(".lecture-feature"));
+      const lectureDark = lectureProgress !== null && lectureProgress >= 0.22 && lectureProgress <= 0.78;
+      setOnDark(heroDark || lectureDark);
     };
 
     compute();
