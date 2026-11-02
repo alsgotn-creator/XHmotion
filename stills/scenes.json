@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "slug": "welcome-gate",
+    "name": "환영의 문",
+    "principles": "Appeal, Staging, Idling"
+  },
+  {
+    "id": 2,
+    "slug": "bounce-plaza",
+    "name": "바운스 광장",
+    "principles": "Squash and Stretch, Exaggeration"
+  },
+  {
+    "id": 3,
+    "slug": "anticipation-hill",
+    "name": "예비동작 언덕",
+    "principles": "Anticipation, Timing"
+  },
+  {
+    "id": 4,
+    "slug": "arc-bridge",
+    "name": "호의 다리",
+    "principles": "Arc, Follow Through, Overlapping Action"
+  },
+  {
+    "id": 5,
+    "slug": "easing-valley",
+    "name": "이징 계곡",
+    "principles": "Slow In and Slow Out, Secondary Action"
+  },
+  {
+    "id": 6,
+    "slug": "the-studio",
+    "name": "작업실",
+    "principles": "Solid Drawing, Straight Ahead and Pose to Pose, Appeal"
+  }
+]

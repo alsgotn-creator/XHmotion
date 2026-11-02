@@ -1,0 +1,38 @@
+[
+  {
+    "created_at": "2026-10-31T15:14:26.756399Z",
+    "display_name": "Seedance 2.0 Mini",
+    "id": "7218bc07-1888-47ae-9fc1-66b40dd37ed9",
+    "job_type": "seedance_2_0_mini",
+    "min_result_url": null,
+    "params": {
+      "aspect_ratio": "16:9",
+      "duration": 8,
+      "generate_audio": false,
+      "genre": "auto",
+      "height": 720,
+      "medias": [
+        {
+          "data": {
+            "id": "a0422f17-8d74-4302-8bb0-a4a46abccb29",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_38xhz4xiKRLe1mXA7TmhnNaGomC/a0422f17-8d74-4302-8bb0-a4a46abccb29.png"
+          },
+          "role": "start_image"
+        }
+      ],
+      "multi_prompt": [],
+      "multi_shot_mode": "custom",
+      "multi_shots": false,
+      "prompt": "Single continuous cinematic camera move, no cuts. Begin high and far, looking down at the whole island from outside like a tiny model on a plain background. The camera slowly glides forward and descends toward it, as if flying inside. The camera sweeps in on a wide curving arc as it descends, banking around the island before settling toward its heart — a big expressive aerial move. The camera sweeps in toward the s-curved slope running through the round island and the walking character on it, marker posts clustered at the flat ends and spread apart across the steep middle. Stop while the island still reads as a miniature set, never pushing in so far that a single character or object fills the frame. Soft matte clay diorama, rounded toy-model shapes, tilt-shift miniature, warm studio light, palette of #ff4d1c, #141414, #ebebeb, #0d0d0d, #8a8a8a, #073bc7. Smooth, graceful, slow motion, subtle parallax. No text, no captions.",
+      "prompt_language": "en",
+      "reference_elements": [],
+      "resolution": "720p",
+      "speedramp": "auto",
+      "width": 1280
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_38xhz4xiKRLe1mXA7TmhnNaGomC/hf_20261031_151426_7218bc07-1888-47ae-9fc1-66b40dd37ed9.mp4",
+    "status": "completed",
+    "thumbnail_url": "https://cdn.higgsfield.ai/user_38xhz4xiKRLe1mXA7TmhnNaGomC/hf_20261031_151426_7218bc07-1888-47ae-9fc1-66b40dd37ed9_thumbnail.webp"
+  }
+]

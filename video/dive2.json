@@ -1,0 +1,38 @@
+[
+  {
+    "created_at": "2026-10-31T15:14:26.06686Z",
+    "display_name": "Seedance 2.0 Mini",
+    "id": "a791a903-21a4-4edb-8d53-fd2676948fbe",
+    "job_type": "seedance_2_0_mini",
+    "min_result_url": null,
+    "params": {
+      "aspect_ratio": "16:9",
+      "duration": 8,
+      "generate_audio": false,
+      "genre": "auto",
+      "height": 720,
+      "medias": [
+        {
+          "data": {
+            "id": "aef62ab9-22b4-498b-8bca-3284e0aa071a",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_38xhz4xiKRLe1mXA7TmhnNaGomC/aef62ab9-22b4-498b-8bca-3284e0aa071a.png"
+          },
+          "role": "start_image"
+        }
+      ],
+      "multi_prompt": [],
+      "multi_shot_mode": "custom",
+      "multi_shots": false,
+      "prompt": "Single continuous cinematic camera move, no cuts. Begin high and far, looking down at the whole island from outside like a tiny model on a plain background. The camera slowly glides forward and descends toward it, as if flying inside. Throughout the descent the camera holds exactly the same high isometric angle — no rotation, no orbit, no tilt. It only comes straight down toward the island, the view angle never changing. The camera sweeps in toward the giant orange rubber ball squashed flat against the plaza floor and the second ball stretched tall in mid-air above it, blue trampolines and springs around them. Stop while the island still reads as a miniature set, never pushing in so far that a single character or object fills the frame. Soft matte clay diorama, rounded toy-model shapes, tilt-shift miniature, warm studio light, palette of #ff4d1c, #141414, #ebebeb, #0d0d0d, #8a8a8a, #073bc7. Smooth, graceful, slow motion, subtle parallax. No text, no captions.",
+      "prompt_language": "en",
+      "reference_elements": [],
+      "resolution": "720p",
+      "speedramp": "auto",
+      "width": 1280
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_38xhz4xiKRLe1mXA7TmhnNaGomC/hf_20261031_151426_a791a903-21a4-4edb-8d53-fd2676948fbe.mp4",
+    "status": "completed",
+    "thumbnail_url": "https://cdn.higgsfield.ai/user_38xhz4xiKRLe1mXA7TmhnNaGomC/hf_20261031_151426_a791a903-21a4-4edb-8d53-fd2676948fbe_thumbnail.webp"
+  }
+]

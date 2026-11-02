@@ -1,0 +1,15 @@
+# 생성된 미디어는 커밋하지 않습니다 — 199MB이고, 프롬프트(.txt)와 빌더(.cjs)만 있으면
+# 언제든 다시 뽑을 수 있습니다. v1이 어떻게 나왔는지는 docs/ 의 축소 이미지로 남겨뒀습니다.
+*.mp4
+stills/*.png
+video/*.png
+site/assets/
+site/_qa/
+site/concat.txt
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 빈 stderr 로그 — 노이즈
+*.err

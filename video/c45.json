@@ -1,0 +1,46 @@
+[
+  {
+    "created_at": "2026-10-31T15:18:22.758206Z",
+    "display_name": "Seedance 2.0 Mini",
+    "id": "989ad7ec-1888-4473-95cc-f091724202f3",
+    "job_type": "seedance_2_0_mini",
+    "min_result_url": null,
+    "params": {
+      "aspect_ratio": "16:9",
+      "duration": 5,
+      "generate_audio": false,
+      "genre": "auto",
+      "height": 720,
+      "medias": [
+        {
+          "data": {
+            "id": "189ef1fe-b002-48d5-93b7-9e0c730b2844",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_38xhz4xiKRLe1mXA7TmhnNaGomC/189ef1fe-b002-48d5-93b7-9e0c730b2844.png"
+          },
+          "role": "start_image"
+        },
+        {
+          "data": {
+            "id": "eae4b111-8108-49cc-a772-46d630bfc7c7",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_38xhz4xiKRLe1mXA7TmhnNaGomC/eae4b111-8108-49cc-a772-46d630bfc7c7.png"
+          },
+          "role": "end_image"
+        }
+      ],
+      "multi_prompt": [],
+      "multi_shot_mode": "custom",
+      "multi_shots": false,
+      "prompt": "Single continuous cinematic camera move, no cuts. The camera smoothly pulls up and back out of the arched orange bridge island, rising into the sky until the island reads as a small model below, then glides forward across the connected miniature world and arrives above the round easing-valley island, beginning to descend toward it. One connected miniature clay world, seamless flowing aerial transition. Soft matte clay diorama, rounded toy-model shapes, tilt-shift miniature, warm studio light, palette of #ff4d1c, #141414, #ebebeb, #0d0d0d, #8a8a8a, #073bc7. Smooth, graceful, slow motion, subtle parallax. No text, no captions.",
+      "prompt_language": "en",
+      "reference_elements": [],
+      "resolution": "720p",
+      "speedramp": "auto",
+      "width": 1280
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_38xhz4xiKRLe1mXA7TmhnNaGomC/hf_20261031_151822_989ad7ec-1888-4473-95cc-f091724202f3.mp4",
+    "status": "completed",
+    "thumbnail_url": "https://cdn.higgsfield.ai/user_38xhz4xiKRLe1mXA7TmhnNaGomC/hf_20261031_151822_989ad7ec-1888-4473-95cc-f091724202f3_thumbnail.webp"
+  }
+]

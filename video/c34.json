@@ -1,0 +1,46 @@
+[
+  {
+    "created_at": "2026-10-31T15:18:23.289354Z",
+    "display_name": "Seedance 2.0 Mini",
+    "id": "9a8141d2-f8a4-4de4-b27c-4cb1d6d3e8f1",
+    "job_type": "seedance_2_0_mini",
+    "min_result_url": null,
+    "params": {
+      "aspect_ratio": "16:9",
+      "duration": 5,
+      "generate_audio": false,
+      "genre": "auto",
+      "height": 720,
+      "medias": [
+        {
+          "data": {
+            "id": "ba266ab6-f2be-4796-883e-779933f5dacf",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_38xhz4xiKRLe1mXA7TmhnNaGomC/ba266ab6-f2be-4796-883e-779933f5dacf.png"
+          },
+          "role": "start_image"
+        },
+        {
+          "data": {
+            "id": "48d7d3f4-b315-4ce1-a45a-40a0e2612578",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_38xhz4xiKRLe1mXA7TmhnNaGomC/48d7d3f4-b315-4ce1-a45a-40a0e2612578.png"
+          },
+          "role": "end_image"
+        }
+      ],
+      "multi_prompt": [],
+      "multi_shot_mode": "custom",
+      "multi_shots": false,
+      "prompt": "Single continuous cinematic camera move, no cuts. The camera smoothly pulls up and back out of the hillside island of slingshots and metronomes, rising into the sky until the island reads as a small model below, then glides forward across the connected miniature world and arrives above the arched orange bridge island, beginning to descend toward it. One connected miniature clay world, seamless flowing aerial transition. Soft matte clay diorama, rounded toy-model shapes, tilt-shift miniature, warm studio light, palette of #ff4d1c, #141414, #ebebeb, #0d0d0d, #8a8a8a, #073bc7. Smooth, graceful, slow motion, subtle parallax. No text, no captions.",
+      "prompt_language": "en",
+      "reference_elements": [],
+      "resolution": "720p",
+      "speedramp": "auto",
+      "width": 1280
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_38xhz4xiKRLe1mXA7TmhnNaGomC/hf_20261031_151823_9a8141d2-f8a4-4de4-b27c-4cb1d6d3e8f1.mp4",
+    "status": "completed",
+    "thumbnail_url": "https://cdn.higgsfield.ai/user_38xhz4xiKRLe1mXA7TmhnNaGomC/hf_20261031_151823_9a8141d2-f8a4-4de4-b27c-4cb1d6d3e8f1_thumbnail.webp"
+  }
+]

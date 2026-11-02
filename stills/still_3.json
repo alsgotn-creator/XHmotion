@@ -1,0 +1,23 @@
+[
+  {
+    "created_at": "2026-10-31T14:42:36.375354Z",
+    "display_name": "GPT Image 2",
+    "id": "f6f2d338-3257-4bc5-b4f6-6caac39af5fe",
+    "job_type": "gpt_image_2",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_38xhz4xiKRLe1mXA7TmhnNaGomC/hf_20261031_144236_f6f2d338-3257-4bc5-b4f6-6caac39af5fe_min.webp",
+    "params": {
+      "aspect_ratio": "3:2",
+      "height": 1360,
+      "medias": [],
+      "model": "videotape-alpha",
+      "prompt": "Isometric low-poly 3D diorama floating as a small rounded island on a plain solid #ebebeb background with a soft contact shadow beneath it. Soft matte clay 3D render, rounded toy-model shapes, gentle warm studio lighting, soft long shadows, tilt-shift miniature look. Cohesive color palette of #ff4d1c, #141414, #ebebeb, #0d0d0d, #8a8a8a, #073bc7. Highly detailed, centered composition, absolutely no text, no letters, no numbers, no logos.\n\nSubject: A hillside island of coiled potential energy. A huge wooden slingshot is pulled all the way back, its orange elastic band stretched taut; a wind-up key crank is twisted tight on a toy cart; a diving board bends downward at its tip. Several tall pendulum metronomes of different heights stand in a row, arms frozen at different angles. A small rounded clay-toy character: young Korean man, soft bowl-cut dark hair, black turtleneck, calm friendly face, simple dot eyes, no text on clothing. crouches low at the edge of the diving board, arms drawn back behind him, leaning away from the direction he is about to launch. Everything in the scene looks mid-breath and alive: pennants lifting, lanterns swaying, leaves tilting, nothing perfectly still.",
+      "quality": "high",
+      "reference_elements": [],
+      "remove_bg": false,
+      "resolution": "2k",
+      "width": 2048
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_38xhz4xiKRLe1mXA7TmhnNaGomC/hf_20261031_144236_f6f2d338-3257-4bc5-b4f6-6caac39af5fe.png",
+    "status": "completed"
+  }
+]

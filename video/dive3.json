@@ -1,0 +1,38 @@
+[
+  {
+    "created_at": "2026-10-31T15:14:24.993538Z",
+    "display_name": "Seedance 2.0 Mini",
+    "id": "a8328436-a9f3-4705-81d6-61af2747bc8e",
+    "job_type": "seedance_2_0_mini",
+    "min_result_url": null,
+    "params": {
+      "aspect_ratio": "16:9",
+      "duration": 8,
+      "generate_audio": false,
+      "genre": "auto",
+      "height": 720,
+      "medias": [
+        {
+          "data": {
+            "id": "733b9400-d109-484a-9544-2a06eb952ee7",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_38xhz4xiKRLe1mXA7TmhnNaGomC/733b9400-d109-484a-9544-2a06eb952ee7.png"
+          },
+          "role": "start_image"
+        }
+      ],
+      "multi_prompt": [],
+      "multi_shot_mode": "custom",
+      "multi_shots": false,
+      "prompt": "Single continuous cinematic camera move, no cuts. Begin high and far, looking down at the whole island from outside like a tiny model on a plain background. The camera slowly glides forward and descends toward it, as if flying inside. After descending, the camera levels off low and glides forward across the scene, foreground props sliding past in parallax. The camera sweeps in toward the huge wooden slingshot pulled all the way back and the row of tall pendulum metronomes behind it, a character crouched at the end of a bending diving board. Stop while the island still reads as a miniature set, never pushing in so far that a single character or object fills the frame. Soft matte clay diorama, rounded toy-model shapes, tilt-shift miniature, warm studio light, palette of #ff4d1c, #141414, #ebebeb, #0d0d0d, #8a8a8a, #073bc7. Smooth, graceful, slow motion, subtle parallax. No text, no captions.",
+      "prompt_language": "en",
+      "reference_elements": [],
+      "resolution": "720p",
+      "speedramp": "auto",
+      "width": 1280
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_38xhz4xiKRLe1mXA7TmhnNaGomC/hf_20261031_151424_a8328436-a9f3-4705-81d6-61af2747bc8e.mp4",
+    "status": "completed",
+    "thumbnail_url": "https://cdn.higgsfield.ai/user_38xhz4xiKRLe1mXA7TmhnNaGomC/hf_20261031_151424_a8328436-a9f3-4705-81d6-61af2747bc8e_thumbnail.webp"
+  }
+]

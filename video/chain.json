@@ -1,0 +1,106 @@
+{
+  "dives": [
+    {
+      "id": "dive1",
+      "scene": 1,
+      "still": "stills/still_1.png",
+      "flavor": "lockedIso",
+      "desc": "1장 환영의 문 — 재활용 (leg0 1차)",
+      "reuse": "video/leg0_v1_old.mp4",
+      "focal": "the orange archway gate and the small clay character waving beneath it, banner poles and paper lanterns around him",
+      "prompt": "Single continuous cinematic camera move, no cuts. Begin high and far, looking down at the whole island from outside like a tiny model on a plain background. The camera slowly glides forward and descends toward it, as if flying inside. Throughout the descent the camera holds exactly the same high isometric angle — no rotation, no orbit, no tilt. It only comes straight down toward the island, the view angle never changing. The camera sweeps in toward the orange archway gate and the small clay character waving beneath it, banner poles and paper lanterns around him. Stop while the island still reads as a miniature set, never pushing in so far that a single character or object fills the frame. Soft matte clay diorama, rounded toy-model shapes, tilt-shift miniature, warm studio light, palette of #ff4d1c, #141414, #ebebeb, #0d0d0d, #8a8a8a, #073bc7. Smooth, graceful, slow motion, subtle parallax. No text, no captions."
+    },
+    {
+      "id": "dive2",
+      "scene": 2,
+      "still": "stills/still_2.png",
+      "flavor": "lockedIso",
+      "desc": "2장 바운스 광장",
+      "focal": "the giant orange rubber ball squashed flat against the plaza floor and the second ball stretched tall in mid-air above it, blue trampolines and springs around them",
+      "prompt": "Single continuous cinematic camera move, no cuts. Begin high and far, looking down at the whole island from outside like a tiny model on a plain background. The camera slowly glides forward and descends toward it, as if flying inside. Throughout the descent the camera holds exactly the same high isometric angle — no rotation, no orbit, no tilt. It only comes straight down toward the island, the view angle never changing. The camera sweeps in toward the giant orange rubber ball squashed flat against the plaza floor and the second ball stretched tall in mid-air above it, blue trampolines and springs around them. Stop while the island still reads as a miniature set, never pushing in so far that a single character or object fills the frame. Soft matte clay diorama, rounded toy-model shapes, tilt-shift miniature, warm studio light, palette of #ff4d1c, #141414, #ebebeb, #0d0d0d, #8a8a8a, #073bc7. Smooth, graceful, slow motion, subtle parallax. No text, no captions."
+    },
+    {
+      "id": "dive3",
+      "scene": 3,
+      "still": "stills/still_3.png",
+      "flavor": "walkthrough",
+      "desc": "3장 예비동작 언덕",
+      "focal": "the huge wooden slingshot pulled all the way back and the row of tall pendulum metronomes behind it, a character crouched at the end of a bending diving board",
+      "prompt": "Single continuous cinematic camera move, no cuts. Begin high and far, looking down at the whole island from outside like a tiny model on a plain background. The camera slowly glides forward and descends toward it, as if flying inside. After descending, the camera levels off low and glides forward across the scene, foreground props sliding past in parallax. The camera sweeps in toward the huge wooden slingshot pulled all the way back and the row of tall pendulum metronomes behind it, a character crouched at the end of a bending diving board. Stop while the island still reads as a miniature set, never pushing in so far that a single character or object fills the frame. Soft matte clay diorama, rounded toy-model shapes, tilt-shift miniature, warm studio light, palette of #ff4d1c, #141414, #ebebeb, #0d0d0d, #8a8a8a, #073bc7. Smooth, graceful, slow motion, subtle parallax. No text, no captions."
+    },
+    {
+      "id": "dive4",
+      "scene": 4,
+      "still": "stills/still_4.png",
+      "flavor": "walkthrough",
+      "desc": "4장 호의 다리",
+      "focal": "the tall curved orange bridge and the running character whose long knitted scarf streams far behind him, the row of small flags each lagging behind the one before",
+      "prompt": "Single continuous cinematic camera move, no cuts. Begin high and far, looking down at the whole island from outside like a tiny model on a plain background. The camera slowly glides forward and descends toward it, as if flying inside. After descending, the camera levels off low and glides forward across the scene, foreground props sliding past in parallax. The camera sweeps in toward the tall curved orange bridge and the running character whose long knitted scarf streams far behind him, the row of small flags each lagging behind the one before. Stop while the island still reads as a miniature set, never pushing in so far that a single character or object fills the frame. Soft matte clay diorama, rounded toy-model shapes, tilt-shift miniature, warm studio light, palette of #ff4d1c, #141414, #ebebeb, #0d0d0d, #8a8a8a, #073bc7. Smooth, graceful, slow motion, subtle parallax. No text, no captions."
+    },
+    {
+      "id": "dive5",
+      "scene": 5,
+      "still": "stills/still_5.png",
+      "flavor": "flyThrough",
+      "desc": "5장 이징 계곡",
+      "focal": "the s-curved slope running through the round island and the walking character on it, marker posts clustered at the flat ends and spread apart across the steep middle",
+      "prompt": "Single continuous cinematic camera move, no cuts. Begin high and far, looking down at the whole island from outside like a tiny model on a plain background. The camera slowly glides forward and descends toward it, as if flying inside. The camera sweeps in on a wide curving arc as it descends, banking around the island before settling toward its heart — a big expressive aerial move. The camera sweeps in toward the s-curved slope running through the round island and the walking character on it, marker posts clustered at the flat ends and spread apart across the steep middle. Stop while the island still reads as a miniature set, never pushing in so far that a single character or object fills the frame. Soft matte clay diorama, rounded toy-model shapes, tilt-shift miniature, warm studio light, palette of #ff4d1c, #141414, #ebebeb, #0d0d0d, #8a8a8a, #073bc7. Smooth, graceful, slow motion, subtle parallax. No text, no captions."
+    },
+    {
+      "id": "dive6",
+      "scene": 6,
+      "still": "stills/still_6.png",
+      "flavor": "flyThrough",
+      "desc": "6장 작업실 (피날레)",
+      "focal": "the motion designer's desk with its monitor and the corkboard wall of pinned pose cards behind it, the character seated and turning toward the viewer",
+      "prompt": "Single continuous cinematic camera move, no cuts. Begin high and far, looking down at the whole island from outside like a tiny model on a plain background. The camera slowly glides forward and descends toward it, as if flying inside. The camera sweeps in on a wide curving arc as it descends, banking around the island before settling toward its heart — a big expressive aerial move. The camera sweeps in toward the motion designer's desk with its monitor and the corkboard wall of pinned pose cards behind it, the character seated and turning toward the viewer. Stop while the island still reads as a miniature set, never pushing in so far that a single character or object fills the frame. Soft matte clay diorama, rounded toy-model shapes, tilt-shift miniature, warm studio light, palette of #ff4d1c, #141414, #ebebeb, #0d0d0d, #8a8a8a, #073bc7. Smooth, graceful, slow motion, subtle parallax. No text, no captions."
+    }
+  ],
+  "connectors": [
+    {
+      "id": "c12",
+      "from": 1,
+      "to": 2,
+      "desc": "1장 → 2장 공중 이동",
+      "startFrom": "video/dive1_last.png",
+      "endFrom": "video/dive2_first.png",
+      "prompt": "Single continuous cinematic camera move, no cuts. The camera smoothly pulls up and back out of the welcome gateway island, rising into the sky until the island reads as a small model below, then glides forward across the connected miniature world and arrives above the bouncing playground plaza island, beginning to descend toward it. One connected miniature clay world, seamless flowing aerial transition. Soft matte clay diorama, rounded toy-model shapes, tilt-shift miniature, warm studio light, palette of #ff4d1c, #141414, #ebebeb, #0d0d0d, #8a8a8a, #073bc7. Smooth, graceful, slow motion, subtle parallax. No text, no captions."
+    },
+    {
+      "id": "c23",
+      "from": 2,
+      "to": 3,
+      "desc": "2장 → 3장 공중 이동",
+      "startFrom": "video/dive2_last.png",
+      "endFrom": "video/dive3_first.png",
+      "prompt": "Single continuous cinematic camera move, no cuts. The camera smoothly pulls up and back out of the bouncing playground plaza island, rising into the sky until the island reads as a small model below, then glides forward across the connected miniature world and arrives above the hillside island of slingshots and metronomes, beginning to descend toward it. One connected miniature clay world, seamless flowing aerial transition. Soft matte clay diorama, rounded toy-model shapes, tilt-shift miniature, warm studio light, palette of #ff4d1c, #141414, #ebebeb, #0d0d0d, #8a8a8a, #073bc7. Smooth, graceful, slow motion, subtle parallax. No text, no captions."
+    },
+    {
+      "id": "c34",
+      "from": 3,
+      "to": 4,
+      "desc": "3장 → 4장 공중 이동",
+      "startFrom": "video/dive3_last.png",
+      "endFrom": "video/dive4_first.png",
+      "prompt": "Single continuous cinematic camera move, no cuts. The camera smoothly pulls up and back out of the hillside island of slingshots and metronomes, rising into the sky until the island reads as a small model below, then glides forward across the connected miniature world and arrives above the arched orange bridge island, beginning to descend toward it. One connected miniature clay world, seamless flowing aerial transition. Soft matte clay diorama, rounded toy-model shapes, tilt-shift miniature, warm studio light, palette of #ff4d1c, #141414, #ebebeb, #0d0d0d, #8a8a8a, #073bc7. Smooth, graceful, slow motion, subtle parallax. No text, no captions."
+    },
+    {
+      "id": "c45",
+      "from": 4,
+      "to": 5,
+      "desc": "4장 → 5장 공중 이동",
+      "startFrom": "video/dive4_last.png",
+      "endFrom": "video/dive5_first.png",
+      "prompt": "Single continuous cinematic camera move, no cuts. The camera smoothly pulls up and back out of the arched orange bridge island, rising into the sky until the island reads as a small model below, then glides forward across the connected miniature world and arrives above the round easing-valley island, beginning to descend toward it. One connected miniature clay world, seamless flowing aerial transition. Soft matte clay diorama, rounded toy-model shapes, tilt-shift miniature, warm studio light, palette of #ff4d1c, #141414, #ebebeb, #0d0d0d, #8a8a8a, #073bc7. Smooth, graceful, slow motion, subtle parallax. No text, no captions."
+    },
+    {
+      "id": "c56",
+      "from": 5,
+      "to": 6,
+      "desc": "5장 → 6장 공중 이동",
+      "startFrom": "video/dive5_last.png",
+      "endFrom": "video/dive6_first.png",
+      "prompt": "Single continuous cinematic camera move, no cuts. The camera smoothly pulls up and back out of the round easing-valley island, rising into the sky until the island reads as a small model below, then glides forward across the connected miniature world and arrives above the motion designer's studio island, beginning to descend toward it. One connected miniature clay world, seamless flowing aerial transition. Soft matte clay diorama, rounded toy-model shapes, tilt-shift miniature, warm studio light, palette of #ff4d1c, #141414, #ebebeb, #0d0d0d, #8a8a8a, #073bc7. Smooth, graceful, slow motion, subtle parallax. No text, no captions."
+    }
+  ]
+}

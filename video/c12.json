@@ -1,0 +1,46 @@
+[
+  {
+    "created_at": "2026-10-31T15:18:23.269823Z",
+    "display_name": "Seedance 2.0 Mini",
+    "id": "36136978-c245-49f4-b332-01f3e1704c32",
+    "job_type": "seedance_2_0_mini",
+    "min_result_url": null,
+    "params": {
+      "aspect_ratio": "16:9",
+      "duration": 5,
+      "generate_audio": false,
+      "genre": "auto",
+      "height": 720,
+      "medias": [
+        {
+          "data": {
+            "id": "d5c0bdc2-2224-400e-8d15-34d08a0b7944",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_38xhz4xiKRLe1mXA7TmhnNaGomC/d5c0bdc2-2224-400e-8d15-34d08a0b7944.png"
+          },
+          "role": "start_image"
+        },
+        {
+          "data": {
+            "id": "524b0404-7f8e-4b27-8cca-e7042486cc52",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_38xhz4xiKRLe1mXA7TmhnNaGomC/524b0404-7f8e-4b27-8cca-e7042486cc52.png"
+          },
+          "role": "end_image"
+        }
+      ],
+      "multi_prompt": [],
+      "multi_shot_mode": "custom",
+      "multi_shots": false,
+      "prompt": "Single continuous cinematic camera move, no cuts. The camera smoothly pulls up and back out of the welcome gateway island, rising into the sky until the island reads as a small model below, then glides forward across the connected miniature world and arrives above the bouncing playground plaza island, beginning to descend toward it. One connected miniature clay world, seamless flowing aerial transition. Soft matte clay diorama, rounded toy-model shapes, tilt-shift miniature, warm studio light, palette of #ff4d1c, #141414, #ebebeb, #0d0d0d, #8a8a8a, #073bc7. Smooth, graceful, slow motion, subtle parallax. No text, no captions.",
+      "prompt_language": "en",
+      "reference_elements": [],
+      "resolution": "720p",
+      "speedramp": "auto",
+      "width": 1280
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_38xhz4xiKRLe1mXA7TmhnNaGomC/hf_20261031_151823_36136978-c245-49f4-b332-01f3e1704c32.mp4",
+    "status": "completed",
+    "thumbnail_url": "https://cdn.higgsfield.ai/user_38xhz4xiKRLe1mXA7TmhnNaGomC/hf_20261031_151823_36136978-c245-49f4-b332-01f3e1704c32_thumbnail.webp"
+  }
+]

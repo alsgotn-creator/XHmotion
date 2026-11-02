@@ -1,0 +1,23 @@
+[
+  {
+    "created_at": "2026-10-31T14:42:36.159725Z",
+    "display_name": "GPT Image 2",
+    "id": "7b8cd830-3898-4a5d-9fdb-51329949071f",
+    "job_type": "gpt_image_2",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_38xhz4xiKRLe1mXA7TmhnNaGomC/hf_20261031_144236_7b8cd830-3898-4a5d-9fdb-51329949071f_min.webp",
+    "params": {
+      "aspect_ratio": "3:2",
+      "height": 1360,
+      "medias": [],
+      "model": "videotape-alpha",
+      "prompt": "Isometric low-poly 3D diorama floating as a small rounded island on a plain solid #ebebeb background with a soft contact shadow beneath it. Soft matte clay 3D render, rounded toy-model shapes, gentle warm studio lighting, soft long shadows, tilt-shift miniature look. Cohesive color palette of #ff4d1c, #141414, #ebebeb, #0d0d0d, #8a8a8a, #073bc7. Highly detailed, centered composition, absolutely no text, no letters, no numbers, no logos.\n\nSubject: A cozy motion designer's studio island, the final destination of the world. A warm wooden desk with a large monitor, a graphics tablet and a mug sits centered. Behind it a corkboard wall holds a grid of small pose cards pinned in sequence. Solid geometric clay primitives — a sphere, a cube, a cylinder — rest on a shelf, strongly three-dimensional with clear volume and weight. A small rounded clay-toy character: young Korean man, soft bowl-cut dark hair, black turtleneck, calm friendly face, simple dot eyes, no text on clothing. sits at the desk in three-quarter view, turning toward the viewer with a warm inviting smile. Leave generous empty space in the upper area of the frame. Everything in the scene looks mid-breath and alive: pennants lifting, lanterns swaying, leaves tilting, nothing perfectly still.",
+      "quality": "high",
+      "reference_elements": [],
+      "remove_bg": false,
+      "resolution": "2k",
+      "width": 2048
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_38xhz4xiKRLe1mXA7TmhnNaGomC/hf_20261031_144236_7b8cd830-3898-4a5d-9fdb-51329949071f.png",
+    "status": "completed"
+  }
+]

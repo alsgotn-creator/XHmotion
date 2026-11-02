@@ -1,0 +1,23 @@
+[
+  {
+    "created_at": "2026-10-31T14:42:36.650039Z",
+    "display_name": "GPT Image 2",
+    "id": "e2e76b0b-7247-4692-8e61-ee1d0c2b2178",
+    "job_type": "gpt_image_2",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_38xhz4xiKRLe1mXA7TmhnNaGomC/hf_20261031_144236_e2e76b0b-7247-4692-8e61-ee1d0c2b2178_min.webp",
+    "params": {
+      "aspect_ratio": "3:2",
+      "height": 1360,
+      "medias": [],
+      "model": "videotape-alpha",
+      "prompt": "Isometric low-poly 3D diorama floating as a small rounded island on a plain solid #ebebeb background with a soft contact shadow beneath it. Soft matte clay 3D render, rounded toy-model shapes, gentle warm studio lighting, soft long shadows, tilt-shift miniature look. Cohesive color palette of #ff4d1c, #141414, #ebebeb, #0d0d0d, #8a8a8a, #073bc7. Highly detailed, centered composition, absolutely no text, no letters, no numbers, no logos.\n\nSubject: A long curved bridge island. A smooth orange rail arcs in a tall graceful curve across a gap between two small clay cliffs, with faint looping guide ribbons tracing curved paths through the air. Heavy round pendulum weights swing beneath the bridge on cords. A small rounded clay-toy character: young Korean man, soft bowl-cut dark hair, black turtleneck, calm friendly face, simple dot eyes, no text on clothing. runs across the arc of the bridge, a very long knitted scarf streaming far behind him and curling at the tip, his hair pushed back, a row of small flags behind him still catching up, each one lagging a little further than the one before. Everything in the scene looks mid-breath and alive: pennants lifting, lanterns swaying, leaves tilting, nothing perfectly still.",
+      "quality": "high",
+      "reference_elements": [],
+      "remove_bg": false,
+      "resolution": "2k",
+      "width": 2048
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_38xhz4xiKRLe1mXA7TmhnNaGomC/hf_20261031_144236_e2e76b0b-7247-4692-8e61-ee1d0c2b2178.png",
+    "status": "completed"
+  }
+]
