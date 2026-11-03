@@ -2,8 +2,6 @@ import { Fragment } from "react";
 import Link from "next/link";
 import Hero from "@/components/Hero";
 import Gallery from "@/components/Gallery";
-import LectureFeature from "@/components/LectureFeature";
-import AboutService from "@/components/AboutService";
 import { TOOLS } from "@/data/tools";
 
 const MARQUEE_WORDS = ["AI", "2D", "3D", "Graphic", "Lecture"];
@@ -51,12 +49,6 @@ export default function HomePage() {
           </Link>
         </div>
       </section>
-
-      {/* ===== Lecture: 포트폴리오와 나란한 두 번째 축 — 영상 섹션 바로 다음, 크게 ===== */}
-      <LectureFeature />
-
-      {/* ===== About + Services: 좌우 반반 ===== */}
-      <AboutService />
     </>
   );
 }

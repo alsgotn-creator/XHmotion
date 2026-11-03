@@ -42,10 +42,10 @@ export default function Header() {
       return rect.top <= 0 && rect.bottom > 0;
     };
 
-    // Lecture 섹션은 고정 어두움이 아니라 뷰포트 진입/이탈 구간에서 디졸브(opacity)로
-    // 나타났다 사라집니다(LectureFeature.jsx의 useScroll offset: ["start end","end start"],
-    // 투명도 키프레임 [0, 0.22, 0.78, 1]). 헤더 글자색도 같은 구간에서만 밝게 바꿔서,
-    // 아직 거의 안 보이는(투명한) 사진 위에서 미리 밝은 글자로 바뀌지 않도록 합니다.
+    // Lecture 섹션은 고정 어두움이 아니라 뷰포트 진입/이탈 구간에서 "라벨(어두운 글자, 밝은
+    // 배경 위) → 배경 사진 디졸브 등장 → 유지 → 디졸브 퇴장" 순으로 진행됩니다
+    // (LectureFeature.jsx의 bgOpacity 키프레임 [0.22, 0.4, 0.8, 1] → [0,1,1,0]).
+    // 헤더 글자색도 배경 사진이 충분히 드러난(opacity ≈ 0.5 이상) 구간에서만 밝게 바꿉니다.
     const dissolveProgress = (el) => {
       if (!el) return null;
       const rect = el.getBoundingClientRect();
@@ -58,7 +58,7 @@ export default function Header() {
     const compute = () => {
       const heroDark = isUnderHeader(document.querySelector(".hero"));
       const lectureProgress = dissolveProgress(document.querySelector(".lecture-feature"));
-      const lectureDark = lectureProgress !== null && lectureProgress >= 0.22 && lectureProgress <= 0.78;
+      const lectureDark = lectureProgress !== null && lectureProgress >= 0.3 && lectureProgress <= 0.88;
       setOnDark(heroDark || lectureDark);
     };
 
@@ -74,7 +74,7 @@ export default function Header() {
   return (
     <header className={`header${scrolled ? " is-scrolled" : ""}${onDark ? " header--on-dark" : ""}`}>
       <div className="container header__inner">
-        <Link href="/" className="logo">
+        <Link href="/noitom-world" className="logo">
           Noitom<span>.</span>
         </Link>
         <nav className="nav" aria-label="주요 메뉴">
