@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { WORKS } from "@/data/works";
 import Modal from "./Modal";
+import WorkThumb from "./WorkThumb";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -20,43 +21,45 @@ function Placeholder({ work }) {
   );
 }
 
-// work.video(유튜브/비메오 embed URL)에서 ID를 뽑아 자동재생+음소거+반복 재생되는
-// 미리보기 src를 만듭니다. 타일에 로컬 mp4(preview)가 없을 때, 호버 시 이걸로 대신합니다.
-function buildHoverPreviewSrc(video) {
+const HOVER_DELAY = 350;
+const FEATURED_TARGET = 8;
+
+function hoverEmbedSrc(video) {
   if (!video) return null;
-  const yt = video.match(/youtube\.com\/embed\/([^?&]+)/);
+
+  const yt = video.match(/youtube\.com\/embed\/([\w-]+)/);
   if (yt) {
     const id = yt[1];
-    return `https://www.youtube.com/embed/${id}?autoplay=1&mute=1&controls=0&loop=1&playlist=${id}&modestbranding=1&playsinline=1&rel=0&showinfo=0`;
+    return `https://www.youtube.com/embed/${id}?autoplay=1&mute=1&loop=1&playlist=${id}&controls=0&modestbranding=1&rel=0&playsinline=1`;
   }
+
   const vimeo = video.match(/player\.vimeo\.com\/video\/(\d+)/);
-  if (vimeo) {
-    const id = vimeo[1];
-    return `https://player.vimeo.com/video/${id}?autoplay=1&muted=1&loop=1&background=1`;
-  }
-  return null;
+  return vimeo
+    ? `https://player.vimeo.com/video/${vimeo[1]}?autoplay=1&muted=1&loop=1&background=1`
+    : null;
 }
 
-/**
- * 풀블리드 갤러리 — galleryKey에 따라 WORKS를 필터링해서 보여줍니다.
- *   "2d3d" | "ai" | "branding" → 해당 section 작품만
- *   "featured"           → featured:true 인 작품만 (Home 대표 작품)
- * "세로 2단" 레이아웃: 컬럼 수 = 아이템 개수 ÷ 2 (올림) → 항상 정확히 2행.
- */
+function buildFeaturedList(works) {
+  const pool = works.filter((work) => work.thumb);
+  const featured = pool.filter((work) => work.featured);
+  const rest = pool.filter((work) => !work.featured);
+  const target = Math.min(FEATURED_TARGET, pool.length) & ~1;
+  return [...featured, ...rest].slice(0, target);
+}
+
 export default function Gallery({ galleryKey }) {
   const gridRef = useRef(null);
+  const hoverTimer = useRef(null);
   const [openId, setOpenId] = useState(null);
-  // 로컬 mp4(preview)가 없는 작품은, 호버 중일 때만 유튜브/비메오 iframe을 마운트해서
-  // 자동재생 미리보기를 보여줍니다(마우스를 떼면 iframe을 떼어내 재생도 같이 멈춥니다).
-  const [hoveredId, setHoveredId] = useState(null);
+  const [playingId, setPlayingId] = useState(null);
 
   const list =
     galleryKey === "featured"
-      ? WORKS.filter((w) => w.featured)
-      : WORKS.filter((w) => w.section === galleryKey);
+      ? buildFeaturedList(WORKS)
+      : WORKS.filter((work) => work.section === galleryKey);
   const cols = Math.max(1, Math.ceil(list.length / 2));
+  const thumbSizes = `(max-width: 640px) 50vw, ${Math.round(100 / cols)}vw`;
 
-  // 스크롤로 들어오며 순서대로 떠오르는 애니메이션 (GSAP + ScrollTrigger)
   useEffect(() => {
     const grid = gridRef.current;
     if (!grid) return;
@@ -77,82 +80,98 @@ export default function Gallery({ galleryKey }) {
     }, grid);
 
     return () => ctx.revert();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [galleryKey, list.length]);
+
+  useEffect(() => () => clearTimeout(hoverTimer.current), []);
 
   if (!list.length) return null;
 
   const reduceMotion = () =>
     typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  const handleEnter = (e, id) => {
-    const v = e.currentTarget.querySelector("video");
-    if (v) v.play().catch(() => {});
+  const handleEnter = (event, work) => {
+    const video = event.currentTarget.querySelector("video");
+    if (video) video.play().catch(() => {});
+
     if (!reduceMotion()) {
-      setHoveredId(id);
-      const media = e.currentTarget.querySelectorAll("img, video, iframe, .work-card__placeholder");
+      const media = event.currentTarget.querySelectorAll(
+        "img, video, iframe, .work-card__placeholder",
+      );
       gsap.to(media, { scale: 1.05, duration: 0.6, ease: "power3.out" });
     }
-  };
 
-  const handleLeave = (e) => {
-    const v = e.currentTarget.querySelector("video");
-    if (v) {
-      v.pause();
-      v.currentTime = 0;
+    if (!work.preview && !reduceMotion() && hoverEmbedSrc(work.video)) {
+      clearTimeout(hoverTimer.current);
+      hoverTimer.current = setTimeout(() => setPlayingId(work.id), HOVER_DELAY);
     }
-    setHoveredId(null);
-    const media = e.currentTarget.querySelectorAll("img, video, iframe, .work-card__placeholder");
-    gsap.to(media, { scale: 1, duration: 0.6, ease: "power3.out" });
   };
 
-  const openWork = list.find((w) => w.id === openId) || null;
+  const handleLeave = (event) => {
+    const video = event.currentTarget.querySelector("video");
+    if (video) {
+      video.pause();
+      video.currentTime = 0;
+    }
+
+    const media = event.currentTarget.querySelectorAll(
+      "img, video, iframe, .work-card__placeholder",
+    );
+    gsap.to(media, { scale: 1, duration: 0.6, ease: "power3.out" });
+    clearTimeout(hoverTimer.current);
+    setPlayingId(null);
+  };
+
+  const openModal = (id) => {
+    clearTimeout(hoverTimer.current);
+    setPlayingId(null);
+    setOpenId(id);
+  };
+  const openWork = list.find((work) => work.id === openId) || null;
 
   return (
     <>
       <div className="gallery" ref={gridRef} style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}>
-        {list.map((w) => {
-          const hoverPreviewSrc = !w.preview && hoveredId === w.id ? buildHoverPreviewSrc(w.video) : null;
-          return (
+        {list.map((work) => (
           <article
-            key={w.id}
-            className="gallery__item"
+            key={work.id}
+            className={`gallery__item${playingId === work.id ? " is-playing" : ""}`}
             tabIndex={0}
             role="button"
-            aria-label={`${w.title} 영상 보기`}
-            onMouseEnter={(e) => handleEnter(e, w.id)}
+            aria-label={`${work.title} 영상 보기`}
+            onMouseEnter={(event) => handleEnter(event, work)}
             onMouseLeave={handleLeave}
-            onClick={() => setOpenId(w.id)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                setOpenId(w.id);
+            onClick={() => openModal(work.id)}
+            onKeyDown={(event) => {
+              if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                openModal(work.id);
               }
             }}
           >
-            {w.thumb ? (
-              <img src={w.thumb} alt={w.title} loading="lazy" />
+            {work.thumb ? (
+              <WorkThumb work={work} sizes={thumbSizes} />
             ) : (
-              <Placeholder work={w} />
+              <Placeholder work={work} />
             )}
-            {w.preview ? (
-              <video src={w.preview} muted loop playsInline preload="none" />
-            ) : hoverPreviewSrc ? (
-              <iframe
-                className="gallery__item-preview"
-                src={hoverPreviewSrc}
-                title={`${w.title} 미리보기`}
-                allow="autoplay; encrypted-media"
-                frameBorder="0"
-              />
+            {work.preview ? (
+              <video src={work.preview} muted loop playsInline preload="none" />
+            ) : null}
+            {playingId === work.id && hoverEmbedSrc(work.video) ? (
+              <div className="gallery__embed" aria-hidden="true">
+                <iframe
+                  src={hoverEmbedSrc(work.video)}
+                  title={work.title}
+                  allow="autoplay; encrypted-media"
+                  tabIndex={-1}
+                />
+              </div>
             ) : null}
             <div className="gallery__caption">
-              <p className="gallery__title">{w.title}</p>
-              <p className="gallery__year">{w.year}</p>
+              <p className="gallery__title">{work.title}</p>
+              <p className="gallery__year">{work.year}</p>
             </div>
           </article>
-          );
-        })}
+        ))}
       </div>
       <Modal work={openWork} onClose={() => setOpenId(null)} />
     </>

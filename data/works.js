@@ -9,6 +9,15 @@
    category  : 작업 성격 라벨 (모달에 표시)
    thumb     : 썸네일 이미지 경로 (없으면 그라디언트로 표시)
                예) "/assets/images/works/brand-film.jpg"  (public/ 기준 절대경로)
+
+               ★ 갤러리 타일이 크고 세로로 길게 잘려 들어가므로 반드시 고해상도를 쓰세요.
+                 - 유튜브: https://i.ytimg.com/vi/영상ID/maxresdefault.jpg   (1280×720)
+                   → hqdefault.jpg는 480×360으로 너무 작아 뭉개집니다.
+                   → maxresdefault가 없는 SD 영상이면 components/WorkThumb.jsx가
+                     자동으로 hqdefault로 되돌리니, 일단 maxresdefault로 적으면 됩니다.
+                 - 비메오: 주소 끝의 크기를 _1280x720 으로 (최대 _1920x1080)
+                   → 영상 ID만 알 때는 https://vimeo.com/api/oembed.json?url=영상주소
+                     를 열어 thumbnail_url 을 확인하세요.
    preview   : 타일에 마우스 올렸을 때 재생할 짧은 mp4 (선택)
                예) "/assets/videos/brand-film-loop.mp4"
    video     : 모달에서 재생할 영상
@@ -187,6 +196,22 @@ export const WORKS = [
 
   // ---------- AI ----------
   {
+    id: "ourshot-promotion",
+    title: "OurShot Promotion",
+    client: "OurShot",
+    year: 2026,
+    section: "ai",
+    category: "ai",
+    thumb: "https://i.ytimg.com/vi/MmzyrpD0IqU/maxresdefault.jpg",
+    preview: "",
+    video: "https://www.youtube.com/embed/MmzyrpD0IqU",
+    role: "Motion Design",
+    tools: ["After Effects", "Higgsfield", "Claude Code"],
+    desc: "OurShot 프로모션 영상. SPUR 제작.",
+    featured: true,
+    color: ["#7c3aed", "#c4b5fd"],
+  },
+  {
     id: "colpop-final",
     title: "콜팝 최종",
     client: "콜팝",
@@ -225,7 +250,7 @@ export const WORKS = [
     year: 2023,
     section: "ai",
     category: "ai",
-    thumb: "https://i.vimeocdn.com/video/1684388319-b346b4c0ff690bb567975ec8fc55ea97c5aac5d49df454c4c39018ae409d6994-d_1280",
+    thumb: "https://i.vimeocdn.com/video/1684388319-b346b4c0ff690bb567975ec8fc55ea97c5aac5d49df454c4c39018ae409d6994-d_1280x720",
     preview: "",
     video: "https://player.vimeo.com/video/836096644",
     role: "AI 비주얼, Motion Design",
@@ -235,8 +260,6 @@ export const WORKS = [
     color: ["#f43f5e", "#fecdd3"],
   },
   {
-    // 아직 AI 전용 영상이 1개 부족해서, 빈 칸으로 남기지 않도록 다른 작업 영상을 임시로 채워뒀습니다.
-    // 실제 AI 작업 영상 링크를 주시면 바로 교체해드릴게요.
     id: "ai-fill-ohouse",
     title: "오늘의집 모션그래픽",
     client: "오늘의집",
@@ -252,12 +275,90 @@ export const WORKS = [
     featured: false,
     color: ["#f59e0b", "#fde68a"],
   },
+  {
+    id: "alchera-smart-viewing-ai",
+    title: "SMART VIEWING — ALCHERA",
+    client: "ALCHERA",
+    year: 2025,
+    section: "ai",
+    category: "ui",
+    thumb: "https://i.ytimg.com/vi/kW2J_zzFTdo/maxresdefault.jpg",
+    preview: "",
+    video: "https://www.youtube.com/embed/kW2J_zzFTdo",
+    role: "UI Motion",
+    tools: ["After Effects"],
+    desc: "알체라 스마트 뷰잉 서비스 소개 영상.",
+    featured: false,
+    color: ["#13c296", "#a6f0da"],
+  },
+  {
+    id: "galaxy-vis-ai",
+    title: "SAMSUNG Galaxy VIS",
+    client: "Samsung Galaxy",
+    year: 2024,
+    section: "ai",
+    category: "ui",
+    thumb: "https://i.ytimg.com/vi/-qfqtBzBV0g/maxresdefault.jpg",
+    preview: "",
+    video: "https://www.youtube.com/embed/-qfqtBzBV0g",
+    role: "UI Motion",
+    tools: ["After Effects"],
+    desc: "삼성 갤럭시 VIS 영상.",
+    featured: false,
+    color: ["#0f172a", "#334155"],
+  },
 
   // ---------- 브랜딩 ----------
-  // 브랜딩 전용 영상이 아직 없어서, 빈 칸으로 남기지 않도록 2D·3D 작업 중 브랜드 영상들을
-  // 임시로 채워뒀습니다. 실제 브랜딩 작업 영상 링크를 주시면 바로 교체해드릴게요.
   {
-    id: "branding-fill-kream",
+    id: "hanwha-madex-2023-branding",
+    title: "Hanwha Madex 2023 — Infographic",
+    client: "Hanwha",
+    year: 2023,
+    section: "branding",
+    category: "ai",
+    thumb: "https://i.vimeocdn.com/video/1684388319-b346b4c0ff690bb567975ec8fc55ea97c5aac5d49df454c4c39018ae409d6994-d_1280x720",
+    preview: "",
+    video: "https://player.vimeo.com/video/836096644",
+    role: "AI 비주얼, Motion Design",
+    tools: ["After Effects"],
+    desc: "한화 마덱스 2023 인포그래픽 영상.",
+    featured: false,
+    color: ["#f43f5e", "#fecdd3"],
+  },
+  {
+    id: "ohouse-motion-branding",
+    title: "오늘의집 모션그래픽",
+    client: "오늘의집",
+    year: 2023,
+    section: "branding",
+    category: "social",
+    thumb: "https://i.ytimg.com/vi/gXojT-bckO0/maxresdefault.jpg",
+    preview: "",
+    video: "https://www.youtube.com/embed/gXojT-bckO0",
+    role: "Motion Design",
+    tools: ["After Effects"],
+    desc: "오늘의집 모션그래픽 작업.",
+    featured: false,
+    color: ["#ff4d1c", "#ffb199"],
+  },
+  {
+    id: "colpop-final-branding",
+    title: "콜팝 최종",
+    client: "콜팝",
+    year: 2024,
+    section: "branding",
+    category: "ai",
+    thumb: "https://i.ytimg.com/vi/Vr4y8aVmrSQ/maxresdefault.jpg",
+    preview: "",
+    video: "https://www.youtube.com/embed/Vr4y8aVmrSQ",
+    role: "AI 비주얼, Motion Design",
+    tools: ["Runway", "After Effects"],
+    desc: "콜팝 브랜드 영상.",
+    featured: false,
+    color: ["#7c3aed", "#c4b5fd"],
+  },
+  {
+    id: "kream-motion-branding",
     title: "KREAM 모션그래픽",
     client: "KREAM",
     year: 2025,
@@ -268,9 +369,9 @@ export const WORKS = [
     video: "https://www.youtube.com/embed/OBKQ8QO0eSs",
     role: "Motion Design",
     tools: ["After Effects", "Cinema 4D"],
-    desc: "KREAM 브랜드 모션그래픽. (임시로 채운 영상 — 실제 브랜딩 작업으로 교체 가능)",
-    featured: true,
-    color: ["#111111", "#333333"],
+    desc: "KREAM 브랜드 모션그래픽.",
+    featured: false,
+    color: ["#ff4d1c", "#ffb199"],
   },
   {
     id: "branding-fill-uniqlo",
@@ -301,7 +402,7 @@ export const WORKS = [
     role: "Motion Design",
     tools: ["After Effects", "Cinema 4D"],
     desc: "SK ON 브랜드 영상. (임시로 채운 영상 — 실제 브랜딩 작업으로 교체 가능)",
-    featured: true,
+    featured: false,
     color: ["#334155", "#64748b"],
   },
   {
