@@ -93,7 +93,18 @@ export default function Header() {
   return (
     <header className={`header${scrolled ? " is-scrolled" : ""}${onDark ? " header--on-dark" : ""}`}>
       <div className="container header__inner">
-        <Link href="/noitom-world" className="logo">
+        <Link
+          href="/noitom-world"
+          className="logo"
+          onClick={(e) => {
+            setMenuOpen(false);
+            if (pathname !== "/noitom-world") return;
+            // 이미 월드에 있으면 영상을 거꾸로 스크럽하며 올라가지 않고 첫 화면으로 즉시 이동
+            e.preventDefault();
+            if (window.__lenis) window.__lenis.scrollTo(0, { immediate: true });
+            else window.scrollTo(0, 0);
+          }}
+        >
           Noitom<span>.</span>
         </Link>
         <nav className="nav" aria-label="주요 메뉴">

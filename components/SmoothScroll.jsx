@@ -22,6 +22,8 @@ export default function SmoothScroll() {
     });
 
     lenis.on("scroll", ScrollTrigger.update);
+    // 헤더 로고처럼 즉시 맨 위로 보내야 하는 곳에서 Lenis의 관성과 싸우지 않도록 노출
+    window.__lenis = lenis;
 
     const onTick = (time) => lenis.raf(time * 1000);
     gsap.ticker.add(onTick);
@@ -29,6 +31,7 @@ export default function SmoothScroll() {
 
     return () => {
       gsap.ticker.remove(onTick);
+      if (window.__lenis === lenis) delete window.__lenis;
       lenis.destroy();
     };
   }, []);
