@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const NAV_LINKS = [
+  { href: "/noitom-world", label: "WORLD" },
   { href: "/", label: "MAIN" },
   { href: "/#work", label: "VIDEO" },
   { href: "/lecture", label: "LECTURE" },
@@ -29,6 +30,25 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
+    // /noitom-world: 월드(어두운 영상)가 화면을 덮고 있는 동안 = 루트 바닥이 아직 뷰포트 아래.
+    if (pathname === "/noitom-world") {
+      const compute = () => {
+        const root = document.getElementById("noitom-world-root");
+        setOnDark(!!root && root.getBoundingClientRect().bottom > window.innerHeight);
+      };
+      compute();
+      // 엔진이 마운트 후 트랙 높이를 잡는 순간에도 다시 계산(첫 로드 때 스크롤 전에도 맞도록)
+      const ro = new ResizeObserver(compute);
+      ro.observe(document.body);
+      window.addEventListener("scroll", compute, { passive: true });
+      window.addEventListener("resize", compute);
+      return () => {
+        ro.disconnect();
+        window.removeEventListener("scroll", compute);
+        window.removeEventListener("resize", compute);
+      };
+    }
+
     if (pathname !== "/") {
       setOnDark(false);
       return;

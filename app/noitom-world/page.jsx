@@ -64,7 +64,10 @@ export default function NoitomWorldPage() {
   // 깔아 화면 전체를 영구히 덮도록 만들어져 있어서(원래 "이 엔진이 페이지 전체" 라는
   // 전제), 트랙 스크롤이 100%를 넘어가면 이 컨테이너 자체를 숨겨서 그 fixed 레이어들이
   // 아래 About/Service 섹션을 계속 가리지 않게 만들어야 합니다.
+  // progress===1 경계에서 그대로 토글하면 트랙패드 관성/리바운드로 1px만 흔들려도
+  // 페이드가 반복돼 깜빡이므로, 완료 판정에 작은 히스테리시스를 둡니다.
   useEffect(() => {
+    let done = false;
     const onScroll = () => {
       const el = containerRef.current;
       if (!el) return;
@@ -72,8 +75,9 @@ export default function NoitomWorldPage() {
       const scrollable = el.offsetHeight - window.innerHeight;
       if (scrollable <= 0) return;
       const progress = (window.scrollY - top) / scrollable;
-      setShowChoice(progress >= 0.8 && progress < 1);
-      setWorldDone(progress >= 1);
+      done = done ? progress >= 0.98 : progress >= 1;
+      setWorldDone(done);
+      setShowChoice(progress >= 0.8 && !done);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -90,7 +94,7 @@ export default function NoitomWorldPage() {
 
     mountedRef.current = true;
     window.mountScrollWorld(containerRef.current, {
-      brand: { name: "Noitom World" },
+      nav: false,
       hint: "스크롤해서 월드로 들어가기",
       diveScroll: 1.3,
       connScroll: 0.8,
@@ -100,6 +104,7 @@ export default function NoitomWorldPage() {
           label: "바운스 챔버",
           still: "/assets/noitom-world/img/scene1.jpg",
           clip: "/assets/noitom-world/vid/scene1.mp4",
+          clipMobile: "/assets/noitom-world/vid/scene1-m.mp4",
           accent: "#ff4d1c",
           scroll: 1.5,
           linger: 0.4,
@@ -113,6 +118,7 @@ export default function NoitomWorldPage() {
           label: "이징 데크",
           still: "/assets/noitom-world/img/scene2.jpg",
           clip: "/assets/noitom-world/vid/scene2.mp4",
+          clipMobile: "/assets/noitom-world/vid/scene2-m.mp4",
           accent: "#073bc7",
           scroll: 1.3,
           eyebrow: "Slow In & Slow Out",
@@ -125,6 +131,7 @@ export default function NoitomWorldPage() {
           label: "호의 다리",
           still: "/assets/noitom-world/img/scene3.jpg",
           clip: "/assets/noitom-world/vid/scene3.mp4",
+          clipMobile: "/assets/noitom-world/vid/scene3-m.mp4",
           accent: "#8a8a8a",
           scroll: 1.3,
           tags: [],
@@ -134,6 +141,7 @@ export default function NoitomWorldPage() {
           label: "작업실",
           still: "/assets/noitom-world/img/scene4.jpg",
           clip: "/assets/noitom-world/vid/scene4.mp4",
+          clipMobile: "/assets/noitom-world/vid/scene4-m.mp4",
           accent: "#ff4d1c",
           scroll: 1.6,
           linger: 0.45,
@@ -147,6 +155,11 @@ export default function NoitomWorldPage() {
         "/assets/noitom-world/vid/conn1.mp4",
         "/assets/noitom-world/vid/conn2.mp4",
         "/assets/noitom-world/vid/conn3.mp4",
+      ],
+      connectorsMobile: [
+        "/assets/noitom-world/vid/conn1-m.mp4",
+        "/assets/noitom-world/vid/conn2-m.mp4",
+        "/assets/noitom-world/vid/conn3-m.mp4",
       ],
     });
   };
@@ -175,7 +188,7 @@ export default function NoitomWorldPage() {
       <div
         id="noitom-world-root"
         ref={containerRef}
-        className={worldDone ? "is-world-done" : undefined}
+        className={worldDone ? "is-world-done" : showChoice ? "is-choosing" : undefined}
       />
 
       <div className={`world-choice${showChoice ? " is-visible" : ""}`} aria-hidden={!showChoice}>
