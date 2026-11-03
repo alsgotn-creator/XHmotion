@@ -21,6 +21,7 @@
            linger: 0.5,   // optional 0..1 — remaps time so the camera settles mid-scene
                           // (exactly where the copy peaks) and moves quicker at the
                           // edges. 0 = linear (default). Keep ≤ 0.6; 1 = full pause.
+           copyLead: 0.1, // optional 0..1 — fade the copy in this fraction of the dive earlier
            eyebrow, title, body, tags:[…],
            cta:{ primary:{label,href}, secondary:{label,href} } }, // last section only
          …
@@ -243,8 +244,10 @@ function mountScrollWorld(container, config) {
 
     for (let i = 0; i < N; i++) {
       const seg = SECTIONS[i]._seg;
-      const pr = clamp((y - seg.start) / (seg.end - seg.start), 0, 1);
-      const before = y < seg.start, after = y > seg.end;
+      // copyLead (0..1, fraction of this dive): shows the copy that much earlier.
+      const cy = y + (SECTIONS[i].copyLead || 0) * (seg.end - seg.start);
+      const pr = clamp((cy - seg.start) / (seg.end - seg.start), 0, 1);
+      const before = cy < seg.start, after = cy > seg.end;
       let cop;
       if (i === 0) cop = after ? 0 : smooth(1 - pr / 0.62);            // greets on landing
       else if (i === N - 1) cop = before ? 0 : smooth(pr / 0.4);       // holds CTA at the end

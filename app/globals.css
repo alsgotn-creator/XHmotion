@@ -1065,7 +1065,17 @@ body { animation: pageIn 0.5s var(--ease); }
   justify-content: center;
   text-align: center;
 }
-#noitom-world-root .sw-copy__tags { display: none; }
+#noitom-world-root .sw-copy__tags,
+#noitom-world-root .sw-copy__num,
+#noitom-world-root .sw-copy__eyebrow,
+#noitom-world-root .sw-route { display: none; }
+/* 카피 제목의 \n을 줄바꿈으로 */
+#noitom-world-root .sw-copy__title { white-space: pre-line; }
+/* 첫 번째 카피 제목은 한 줄 — 화면 폭에 맞춰 글자 크기를 줄여 넘치지 않게 */
+#noitom-world-root .sw-copy:first-child .sw-copy__title {
+  white-space: nowrap;
+  font-size: min(clamp(2rem, 4.4vw, 3.5rem), 4.8vw);
+}
 /* 선택 카드가 떠 있는 동안엔 마지막 씬 카피가 카드 뒤로 겹쳐 보이지 않게 숨김 */
 #noitom-world-root .sw-copylayer { transition: opacity 0.35s ease; }
 #noitom-world-root.is-choosing .sw-copylayer,

@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 
 const NAV_LINKS = [
   { href: "/noitom-world", label: "WORLD" },
-  { href: "/", label: "MAIN" },
   { href: "/#work", label: "VIDEO" },
   { href: "/lecture", label: "LECTURE" },
   { href: "/contact", label: "CONTACT" },
