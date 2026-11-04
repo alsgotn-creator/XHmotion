@@ -112,8 +112,8 @@ export default function NoitomWorldPage() {
           accent: "#ff4d1c",
           scroll: 1.5,
           linger: 0.4,
-          title: "영상을 기획하고 제작하고, 가르쳐요.",
-          body: "AI영상 제작, 앱개발과 웹사이트 배포까지 가능해요.",
+          title: "영상 하나로 끝내지 않습니다.",
+          body: "기획·제작·AI·앱·웹 배포까지, 한 사람이 처음부터 끝까지.",
           tags: [],
         },
         {
@@ -124,8 +124,8 @@ export default function NoitomWorldPage() {
           clipMobile: "/assets/noitom-world/vid/scene2-m.mp4",
           accent: "#073bc7",
           scroll: 1.3,
-          title: "모션디자인은 모든 움직임에\n의도가 있어야 해요.",
-          body: "항상 브랜드의 입장과 목적에 맞춰 제작해요.",
+          title: "의도 없는 움직임은 없습니다.",
+          body: "모든 모션은 브랜드의 입장과 목적에서 출발해요.",
           tags: [],
         },
         {
@@ -138,8 +138,8 @@ export default function NoitomWorldPage() {
           scroll: 1.3,
           // 약 1초(이 씬 영상 10초 기준 10%) 일찍 카피가 뜨도록
           copyLead: 0.1,
-          title: "수많은 제작경험과 강의 노하우로\n모션그래픽의 정수를 선사합니다.",
-          body: "모션그래픽 디자이너 N0it0M입니다",
+          title: "6년의 경험이\n그래픽에 생명을 불어넣습니다.",
+          body: "모션그래픽 디자이너 N0it0M입니다.",
           tags: [],
         },
         {

@@ -104,17 +104,17 @@ export default function AboutService() {
             <div className="about__inner reveal">
               <p className="eyebrow">About</p>
               <h2 className="title-lg about__title">
-                왜 N0it0M에게
+                눈에 띄는 영상 말고,
                 <br />
-                영상을 맡겨야 할까요?
+                기억에 남는 영상을 만듭니다.
               </h2>
               <p className="about__text">
-                2D/3D 모션, AI 영상 제작 및 웹사이트 제작을 중심으로 작업하고 있기 때문이에요.
-                절대 여러 개의 의뢰를 한번에 실행하지 않고 하나의 클라이언트와 소통해요. 메시지가
-                가장 잘 전달되는 움직임을 찾기 위해 충분히 얘기를 나누고 콘티를 나눠요.
+                2D·3D 모션부터 AI, 웹까지 한 사람이 끝까지 만들고, 한 번에 하나의 프로젝트에만
+                집중해요.
               </p>
               <p className="about__text">
-                기획 단계부터 결과물이 브랜드의 언어로 쓰일 수 있도록 디자인해요.
+                6년, 50개 넘는 프로젝트가 가르쳐준 건 좋은 영상은 기획에서 정해진다는 것. 결과물이
+                브랜드의 언어가 되도록 처음부터 설계합니다.
               </p>
 
               <div className="stats">
