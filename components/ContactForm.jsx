@@ -1,24 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { submitContactForm } from "@/app/contact/actions";
 
-export default function ContactForm() {
+// 문의할 "상품"은 Contact 사이드바(ContactShop)에서 고르고, 여기선 그 선택을 hidden 값으로 같이 보냅니다.
+export default function ContactForm({ product }) {
   const formRef = useRef(null);
   const [status, setStatus] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  // 다른 페이지에서 "...문의하기" 버튼으로 넘어올 때 ?type=lecture 처럼 쿼리로
-  // 문의 유형을 넘기면, 해당 라디오를 자동으로 선택해 둡니다.
-  // (next/navigation의 useSearchParams + Suspense 조합은 Next 16의 클라이언트
-  //  전환에서 폼이 영영 렌더링되지 않는 버그가 있어, vanilla JS 때와 동일하게
-  //  window.location.search를 직접 읽는 방식으로 우회합니다.)
-  useEffect(() => {
-    const presetType = new URLSearchParams(window.location.search).get("type");
-    if (!presetType || !formRef.current) return;
-    const radio = formRef.current.querySelector(`input[name="type"][value="${presetType}"]`);
-    if (radio) radio.checked = true;
-  }, []);
 
   // 폼 데이터를 서버(Server Action)로 보내서 실제로 서버가 받아 처리하게 합니다.
   // 브라우저는 submitContactForm을 "호출"하는 것처럼 보이지만, 실제로는
@@ -46,29 +35,15 @@ export default function ContactForm() {
   };
 
   return (
-    <form id="contact-form" ref={formRef} className="form reveal" action="" method="POST" onSubmit={handleSubmit}>
+    <form id="contact-form" ref={formRef} className="form" action="" method="POST" onSubmit={handleSubmit}>
+      <input type="hidden" name="type" value={product.type} />
+      <input type="hidden" name="product" value={product.name} />
       <div className="form__field">
-        <span className="form__label">
-          문의 유형<span className="req">*</span>
-        </span>
-        <div className="chips">
-          <label className="chip">
-            <input type="radio" name="type" value="project" data-label="프로젝트 의뢰" defaultChecked />
-            <span>프로젝트 의뢰</span>
-          </label>
-          <label className="chip">
-            <input type="radio" name="type" value="lecture" data-label="출강 · 강의" />
-            <span>출강 · 강의</span>
-          </label>
-          <label className="chip">
-            <input type="radio" name="type" value="collab" data-label="협업 제안" />
-            <span>협업 제안</span>
-          </label>
-          <label className="chip">
-            <input type="radio" name="type" value="etc" data-label="기타" />
-            <span>기타</span>
-          </label>
-        </div>
+        <span className="form__label">문의 상품</span>
+        <p className="form__product">
+          {product.name}
+          <span>목록에서 바꿀 수 있어요</span>
+        </p>
       </div>
 
       <div className="form__row">
@@ -104,7 +79,13 @@ export default function ContactForm() {
         <textarea
           className="form__textarea"
           name="message"
-          placeholder="프로젝트 내용이나 강의 대상 · 인원 · 주제를 자유롭게 적어주세요."
+          placeholder={
+            product.type === "lecture"
+              ? "강의 대상 · 인원 · 희망 주제 · 일정을 적어주세요."
+              : product.type === "event"
+                ? "행사 종류 · 날짜 · 필요한 항목(청첩장, 식전 영상 등)을 적어주세요."
+                : "프로젝트 내용 · 용도 · 참고 레퍼런스를 자유롭게 적어주세요."
+          }
           required
         />
       </label>

@@ -1,6 +1,7 @@
 "use server";
 
 import { Resend } from "resend";
+import { TYPE_LABELS } from "@/data/products";
 
 /* =========================================================
    app/contact/actions.js — Contact 폼의 Server Action
@@ -22,13 +23,6 @@ const CONTACT_TO = "alsgotn112@gmail.com";
 // resend.com에서 본인 도메인을 인증하면 "Noitom <contact@내도메인.com>"처럼 바꾸세요.
 const CONTACT_FROM = "Noitom 문의 <onboarding@resend.dev>";
 
-const TYPE_LABELS = {
-  project: "프로젝트 의뢰",
-  lecture: "출강 · 강의",
-  collab: "협업 제안",
-  etc: "기타",
-};
-
 const ACCENT = "#ff4d1c";
 
 function escapeHtml(str) {
@@ -42,7 +36,7 @@ function escapeHtml(str) {
 
 // 이메일 클라이언트 호환성 때문에 외부 CSS 없이 table + inline style로만 구성합니다.
 function buildEmailHtml(submission) {
-  const { type, name, email, phone, budget, message, receivedAt } = submission;
+  const { type, product, name, email, phone, budget, message, receivedAt } = submission;
   const row = (label, value, href) => `
     <tr>
       <td style="padding:14px 0;border-bottom:1px solid #eee;width:110px;vertical-align:top;color:#8a8a8a;font-size:13px;font-weight:600;letter-spacing:.02em;">${label}</td>
@@ -84,6 +78,7 @@ function buildEmailHtml(submission) {
                   type
                 )}</span>
                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:20px;border-collapse:collapse;">
+                  ${row("문의 상품", product)}
                   ${row("이름 / 회사", name)}
                   ${row("이메일", email, `mailto:${email}`)}
                   ${row("연락처", phone)}
@@ -122,6 +117,7 @@ export async function submitContactForm(formData) {
   const budget = formData.get("budget")?.toString().trim() || "";
   const message = formData.get("message")?.toString().trim() || "";
   const type = formData.get("type")?.toString() || "etc";
+  const product = formData.get("product")?.toString().trim().slice(0, 80) || "-";
 
   // 서버 쪽 최소 검증 — 브라우저의 required만 믿지 않고 서버에서도 한 번 더 확인합니다
   // (폼을 안 거치고 직접 요청을 보내는 경우까지 막아주기 위함)
@@ -130,7 +126,8 @@ export async function submitContactForm(formData) {
   }
 
   const submission = {
-    type: TYPE_LABELS[type] || type,
+    type: TYPE_LABELS[type] || "기타",
+    product,
     name,
     email,
     phone: phone || "-",
@@ -151,11 +148,12 @@ export async function submitContactForm(formData) {
       from: CONTACT_FROM,
       to: CONTACT_TO,
       replyTo: email,
-      subject: `[${submission.type}] ${name}님의 문의`,
+      subject: `[${submission.type}] ${product} — ${name}님의 문의`,
       html: buildEmailHtml(submission),
       // html을 못 그리는 클라이언트를 위한 텍스트 버전
       text: [
         `문의 유형: ${submission.type}`,
+        `문의 상품: ${product}`,
         `이름/회사: ${name}`,
         `이메일: ${email}`,
         `연락처: ${submission.phone}`,
