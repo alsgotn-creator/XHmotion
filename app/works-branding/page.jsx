@@ -1,4 +1,5 @@
 import Gallery from "@/components/Gallery";
+import Mascot from "@/components/Mascot";
 
 export const metadata = {
   title: "브랜딩",
@@ -11,7 +12,10 @@ export default function WorksBrandingPage() {
       <section className="page-head">
         <div className="container reveal">
           <p className="eyebrow">Work</p>
-          <h1 className="title-xl">브랜딩</h1>
+          <h1 className="title-xl">
+            브랜딩
+            <Mascot />
+          </h1>
           <p className="lead">브랜딩 관련 프로젝트 작업 모음입니다. 타일을 누르면 영상을 볼 수 있어요.</p>
         </div>
       </section>

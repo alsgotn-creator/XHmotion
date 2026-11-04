@@ -1,4 +1,5 @@
 import Gallery from "@/components/Gallery";
+import Mascot from "@/components/Mascot";
 
 export const metadata = {
   title: "2D·3D",
@@ -11,7 +12,10 @@ export default function Works2d3dPage() {
       <section className="page-head">
         <div className="container reveal">
           <p className="eyebrow">Work</p>
-          <h1 className="title-xl">2D · 3D</h1>
+          <h1 className="title-xl">
+            2D · 3D
+            <Mascot />
+          </h1>
           <p className="lead">브랜드 필름부터 타이틀 시퀀스, 3D, UI 모션까지. 타일을 누르면 영상을 볼 수 있어요.</p>
         </div>
       </section>

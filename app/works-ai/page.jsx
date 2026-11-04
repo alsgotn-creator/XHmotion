@@ -1,4 +1,5 @@
 import Gallery from "@/components/Gallery";
+import Mascot from "@/components/Mascot";
 
 export const metadata = {
   title: "AI",
@@ -11,7 +12,10 @@ export default function WorksAiPage() {
       <section className="page-head">
         <div className="container reveal">
           <p className="eyebrow">Work</p>
-          <h1 className="title-xl">AI</h1>
+          <h1 className="title-xl">
+            AI
+            <Mascot />
+          </h1>
           <p className="lead">생성형 AI를 모션 작업에 결합한 비주얼 익스플로레이션입니다. 타일을 누르면 영상을 볼 수 있어요.</p>
         </div>
       </section>

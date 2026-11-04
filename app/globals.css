@@ -126,10 +126,12 @@ main { padding-top: 0; }
 /* 대제목 끝에 붙는 손 흔드는 캐릭터 (Mascot.jsx) — 글자 크기에 비례 */
 video.mascot {
   display: inline-block;
-  height: 1.6em;
+  /* 대제목보다 살짝 작게 — 시선을 뺏지 않는 크기 */
+  height: 0.95em;
   width: auto;
   aspect-ratio: 376 / 480;
-  margin: -0.45em 0 -0.12em 0.12em;
+  margin: 0 0 0.02em 0.14em;
+  opacity: 0.9;
   vertical-align: bottom;
   object-fit: contain;
   pointer-events: none;
