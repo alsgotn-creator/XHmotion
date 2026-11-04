@@ -716,7 +716,8 @@ body.is-locked { overflow: hidden; }
   /* 사진은 오른쪽에서만 살짝 비치고, 글이 있는 왼쪽은 네이비로 덮음 */
   background-image:
     linear-gradient(90deg, rgba(5, 10, 36, 0.86) 0%, rgba(5, 10, 36, 0.6) 50%, rgba(5, 10, 36, 0.28) 100%),
-    url("/assets/images/about-bg.jpg");
+    /* 액자 속 작품을 월드 장면으로 바꾼 버전 — 되돌리려면 about-bg.jpg로 */
+    url("/assets/images/about-bg-world.jpg");
   background-size: cover;
   background-position: center;
 }
