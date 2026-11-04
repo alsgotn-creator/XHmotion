@@ -309,16 +309,8 @@ video.mascot {
   background: rgba(2, 4, 15, 0.85);
   border-top: 1px solid var(--c-line);
   color: rgba(255, 255, 255, 0.55);
-  padding: 48px 0 36px;
+  padding: 36px 0;
   font-size: 14px;
-}
-.footer__top {
-  display: flex;
-  justify-content: space-between;
-  gap: 40px;
-  flex-wrap: wrap;
-  padding-bottom: 28px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 .footer__cta {
   font-size: clamp(26px, 3.5vw, 44px);
@@ -328,14 +320,11 @@ video.mascot {
   line-height: 1.2;
 }
 .footer__cta a { border-bottom: 2px solid var(--c-accent); }
-.footer__sns { display: flex; gap: 24px; align-items: flex-end; }
-.footer__sns a:hover { color: #fff; }
 .footer__bottom {
   display: flex;
   justify-content: space-between;
   gap: 16px;
   flex-wrap: wrap;
-  padding-top: 32px;
 }
 
 /* ---------- 스크롤 등장 애니메이션 ---------- */
