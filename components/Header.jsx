@@ -8,7 +8,7 @@ const NAV_LINKS = [
   { href: "/noitom-world", label: "WORLD" },
   { href: "/video", label: "VIDEO" },
   { href: "/lecture", label: "LECTURE" },
-  { href: "/contact", label: "CONTACT" },
+  { href: "/contact", label: "FOR YOU" },
 ];
 
 export default function Header() {

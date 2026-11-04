@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
 const SERVICES = [
@@ -44,58 +43,28 @@ const STATS = [
   { num: "20", label: "출강 · 강의" },
 ];
 
-const AUTO_MS = 4000;
-
-// 서비스 카드 오토플레이 — 4초마다 다음 카드가 활성화되고, 활성 카드가 화면 안에 오도록 트랙이
-// 왼쪽으로 밀립니다(마지막 카드가 오른쪽 끝에 닿으면 더 밀지 않음). 아래 진행 바는 카드별로 나뉘어
-// 있어 지금 몇 번째인지 + 다음까지 남은 시간이 보이고, 누르면 그 카드로 이동합니다.
-// 화면에 보일 때만 돌고, 마우스를 올리면 멈추며, 움직임 줄이기 설정이면 자동 넘김 없음.
-function useAutoplay(count, rootRef, trackRef) {
-  const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const [inView, setInView] = useState(false);
-  const [reduced, setReduced] = useState(false);
-
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- matchMedia는 마운트 후에만 읽을 수 있음
-    setReduced(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
-    const el = rootRef.current;
-    if (!el) return;
-    const io = new IntersectionObserver(([e]) => setInView(e.isIntersecting), { threshold: 0.3 });
-    io.observe(el);
-    return () => io.disconnect();
-  }, [rootRef]);
-
-  useEffect(() => {
-    if (reduced || paused || !inView) return;
-    const t = setTimeout(() => setIndex((i) => (i + 1) % count), AUTO_MS);
-    return () => clearTimeout(t);
-  }, [index, paused, inView, reduced, count]);
-
-  // 활성 카드 위치까지 트랙 이동 (오른쪽 끝을 넘지 않게)
-  useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
-    const place = () => {
-      const card = track.children[index];
-      if (!card) return;
-      const max = Math.max(0, track.scrollWidth - track.parentElement.clientWidth);
-      const x = Math.min(card.offsetLeft - track.children[0].offsetLeft, max);
-      track.style.transform = `translate3d(${-x}px,0,0)`;
-    };
-    place();
-    window.addEventListener("resize", place);
-    return () => window.removeEventListener("resize", place);
-  }, [index, trackRef]);
-
-  return { index, setIndex, setPaused, running: !reduced && !paused && inView };
+// 서비스 카드 3D 틸트 — 마우스 위치에 따라 카드가 기울고(최대 ±10°) 빛 반사가 커서를 따라감.
+// 터치 기기 / 움직임 줄이기 설정에선 동작하지 않음(호버 자체가 없거나 꺼둠).
+function tiltMove(e) {
+  if (window.matchMedia("(prefers-reduced-motion: reduce), (hover: none)").matches) return;
+  const el = e.currentTarget;
+  const r = el.getBoundingClientRect();
+  const x = (e.clientX - r.left) / r.width; // 0~1
+  const y = (e.clientY - r.top) / r.height;
+  el.style.setProperty("--ry", `${(x - 0.5) * 20}deg`);
+  el.style.setProperty("--rx", `${(0.5 - y) * 20}deg`);
+  el.style.setProperty("--mx", `${x * 100}%`);
+  el.style.setProperty("--my", `${y * 100}%`);
+  el.classList.add("is-tilting");
+}
+function tiltLeave(e) {
+  const el = e.currentTarget;
+  el.classList.remove("is-tilting");
+  el.style.setProperty("--rx", "0deg");
+  el.style.setProperty("--ry", "0deg");
 }
 
 export default function AboutService() {
-  const sectionRef = useRef(null);
-  const trackRef = useRef(null);
-  const { index, setIndex, setPaused, running } = useAutoplay(SERVICES.length, sectionRef, trackRef);
-
   return (
     <>
       <section id="about" className="about">
@@ -137,27 +106,24 @@ export default function AboutService() {
         </div>
       </section>
 
-      <section id="services" className="hscroll" ref={sectionRef}>
-        <div className="container hscroll__head">
-          <p className="eyebrow">Services</p>
-          <h2 className="title-lg">이런 작업이 가능합니다</h2>
-        </div>
-        <div
-          className="hscroll__viewport"
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-          onFocusCapture={() => setPaused(true)}
-          onBlurCapture={() => setPaused(false)}
-        >
-          <div className="hscroll__track" ref={trackRef}>
-            {SERVICES.map((s, i) => (
+      <section id="services" className="hscroll">
+        <div className="container">
+          <div className="hscroll__head">
+            <p className="eyebrow">Services</p>
+            <h2 className="title-lg">이런 작업이 가능합니다</h2>
+          </div>
+          <div className="hscroll__grid">
+            {SERVICES.map((s) => (
               <Link
                 key={s.num}
                 href={s.href}
-                className={`hcard${i === index ? " is-active" : ""}`}
+                className="hcard hcard--tilt"
                 style={{ "--hcard-glow": s.glow }}
+                onMouseMove={tiltMove}
+                onMouseLeave={tiltLeave}
               >
                 <span className="hcard__glow" aria-hidden="true" />
+                <span className="hcard__shine" aria-hidden="true" />
                 <span className="hcard__num">{s.num}</span>
                 <span className="hcard__title">{s.title}</span>
                 <span className="hcard__desc">{s.desc}</span>
@@ -167,21 +133,6 @@ export default function AboutService() {
               </Link>
             ))}
           </div>
-        </div>
-        <div className="container hscroll__bar">
-          {SERVICES.map((s, i) => (
-            <button
-              key={s.num}
-              type="button"
-              aria-label={`${s.title} 카드로 이동`}
-              aria-current={i === index}
-              className={`hscroll__seg${i < index ? " is-done" : ""}${i === index ? " is-active" : ""}${
-                i === index && running ? " is-running" : ""
-              }`}
-              style={{ "--auto": `${AUTO_MS}ms` }}
-              onClick={() => setIndex(i)}
-            />
-          ))}
         </div>
       </section>
     </>

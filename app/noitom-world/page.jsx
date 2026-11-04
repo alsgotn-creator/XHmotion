@@ -189,8 +189,9 @@ export default function NoitomWorldPage() {
             title.appendChild(span);
           }
           const o = parseFloat(copy.style.opacity || "0");
-          if (o > 0.6) copy.classList.add("is-lit");
-          else if (o < 0.1) copy.classList.remove("is-lit");
+          // 카피가 막 떠오르기 시작할 때(opacity 0.15) 바로 긋기 시작
+          if (o > 0.15) copy.classList.add("is-lit");
+          else if (o < 0.05) copy.classList.remove("is-lit");
         });
       }
       raf = requestAnimationFrame(tick);

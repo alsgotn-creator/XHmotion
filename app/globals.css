@@ -4,8 +4,8 @@
    ========================================================= */
 
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
-/* 로고용 손글씨 폰트 */
-@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;500&display=swap");
+/* 로고용 손글씨 폰트 — 획이 단정한 Kalam */
+@import url("https://fonts.googleapis.com/css2?family=Kalam:wght@700&display=swap");
 
 /* ---------- 변수 ----------
    톤은 /noitom-world 씬 컬러에서 가져왔습니다 — 블랙에 가까운 딥 네이비 바탕,
@@ -242,10 +242,11 @@ video.mascot {
   justify-content: space-between;
 }
 .logo {
-  font-family: "Caveat", cursive;
-  font-size: 30px;
-  font-weight: 500;
-  letter-spacing: 0;
+  font-family: "Kalam", cursive;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.01em;
   color: var(--c-text);
   transition: color 0.3s;
 }
@@ -259,14 +260,25 @@ video.mascot {
   top: 50%;
   transform: translate(-50%, -50%);
 }
+/* 메뉴 글자 — 호버 시 블루→보라→오렌지 그라데이션이 왼쪽에서 밀려 들어오며 살짝 커짐.
+   (그라데이션 자체는 전환이 안 돼서, 앞 절반은 단색 · 뒤 절반은 그라데이션인 배경을
+    글자 모양으로 잘라 두고 background-position을 옮기는 방식) */
 .nav a {
+  --nav-base: var(--c-text-sub);
   position: relative;
+  display: inline-block;
   font-size: 15px;
-  font-weight: 400;
-  color: var(--c-text-sub);
-  transition: color 0.2s;
+  font-weight: 500;
+  background-image: linear-gradient(90deg, var(--nav-base) 0%, var(--nav-base) 50%, #6f8cff 62%, #a58bff 80%, #ff6a2b 100%);
+  background-size: 200% 100%;
+  background-position: 0 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  transition: background-position 0.5s var(--ease), transform 0.35s var(--ease);
 }
-.nav a:hover, .nav a.is-active { color: var(--c-text); }
+.nav a.is-active { --nav-base: var(--c-text); }
+.nav a:hover { background-position: 100% 0; transform: scale(1.1); }
 .nav a.is-active::after {
   content: "";
   position: absolute;
@@ -357,9 +369,9 @@ video.mascot {
     transition: opacity 0.3s, transform 0.3s var(--ease), visibility 0.3s;
   }
   .menu-open .nav { opacity: 1; visibility: visible; transform: none; }
-  .nav a { font-size: 22px; font-weight: 700; color: var(--c-text); padding: 14px 0; }
+  .nav a { --nav-base: var(--c-text); font-size: 22px; font-weight: 700; padding: 14px 0; transform-origin: left center; }
   .nav a.is-active::after { display: none; }
-  .nav a.is-active { color: var(--c-accent); }
+  .nav a.is-active { --nav-base: var(--c-accent); }
 }
 
 
@@ -732,17 +744,14 @@ body.is-locked { overflow: hidden; }
 .stats__num sup { font-size: 0.5em; color: var(--c-accent); }
 .stats__label { margin-top: 10px; font-size: 14px; color: var(--c-text-sub); }
 
-/* ---------- Services — 오토플레이 카드 + 진행 바 (AboutService.jsx) ---------- */
+/* ---------- Services — 4장 그리드 + 호버 3D 틸트 (AboutService.jsx) ---------- */
 .hscroll { position: relative; padding: clamp(72px, 10vw, 120px) 0; }
 .hscroll__head { margin-bottom: clamp(28px, 4vw, 44px); text-align: center; }
-.hscroll__viewport { overflow: hidden; }
-.hscroll__track {
-  display: flex;
-  gap: clamp(16px, 2vw, 28px);
-  /* 첫 카드를 container 왼쪽 라인에 맞춤 */
-  padding-inline: max(var(--gutter), calc((100vw - var(--max-w)) / 2 + var(--gutter)));
-  transition: transform 0.9s var(--ease);
-  will-change: transform;
+.hscroll__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(14px, 1.6vw, 24px);
+  perspective: 1000px;
 }
 .hcard {
   position: relative;
@@ -789,42 +798,42 @@ body.is-locked { overflow: hidden; }
 .hcard__cta .arrow { display: inline-block; transition: transform 0.3s var(--ease); }
 .hcard:hover .hcard__cta .arrow { transform: translateX(6px); }
 
-/* 활성 카드 강조 */
-.hcard.is-active { border-color: color-mix(in srgb, var(--hcard-glow) 55%, transparent); }
-.hcard.is-active .hcard__glow { opacity: 1; }
-
-/* 카드별로 나뉜 진행 바 */
-.hscroll__bar { display: flex; gap: 8px; margin-top: clamp(24px, 3vw, 36px); }
-.hscroll__seg {
-  position: relative;
-  flex: 1;
-  height: 18px;
-  cursor: pointer;
+/* 그리드 안 카드 — 폭은 칸에 맞추고, 호버 시 3D 틸트 */
+.hscroll__grid .hcard {
+  width: auto;
+  height: clamp(320px, 44vh, 420px);
+  --rx: 0deg;
+  --ry: 0deg;
+  transform: rotateX(var(--rx)) rotateY(var(--ry));
+  transform-style: preserve-3d;
+  transition: transform 0.6s var(--ease), border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
 }
-.hscroll__seg::before,
-.hscroll__seg::after {
-  content: "";
+.hscroll__grid .hcard__title { font-size: clamp(24px, 2.2vw, 32px); }
+.hscroll__grid .hcard__desc { font-size: 15px; }
+.hscroll__grid .hcard:hover {
+  border-color: color-mix(in srgb, var(--hcard-glow) 60%, transparent);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
+}
+/* 마우스를 따라가는 동안엔 빠르게 반응 */
+.hscroll__grid .hcard.is-tilting { transition: transform 0.12s linear, border-color 0.4s, box-shadow 0.4s; }
+.hcard__shine {
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 8px;
-  height: 2px;
-  border-radius: 2px;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.18), transparent 55%);
+  opacity: 0;
+  transition: opacity 0.3s;
 }
-.hscroll__seg::before { background: var(--c-line); }
-.hscroll__seg::after {
-  background: linear-gradient(90deg, var(--c-blue), var(--c-violet), var(--c-accent));
-  transform-origin: left;
-  transform: scaleX(0);
+.hcard.is-tilting .hcard__shine { opacity: 1; }
+.hscroll__grid .hcard > span:not(.hcard__glow):not(.hcard__shine) { transform: translateZ(24px); }
+@media (max-width: 1000px) { .hscroll__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) {
+  .hscroll__grid { grid-template-columns: 1fr; }
+  .hscroll__grid .hcard { height: auto; min-height: 260px; }
 }
-.hscroll__seg.is-done::after,
-.hscroll__seg.is-active::after { transform: scaleX(1); }
-.hscroll__seg.is-running::after { animation: seg-fill var(--auto) linear forwards; }
-@keyframes seg-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-@media (prefers-reduced-motion: reduce) { .hscroll__track { transition: none; } }
 
 @media (max-width: 640px) {
-  .hcard { width: 80vw; height: clamp(300px, 56vh, 440px); }
   .stats { grid-template-columns: 1fr 1fr; }
 }
 
@@ -1321,11 +1330,11 @@ body { animation: pageIn 0.5s var(--ease); }
 #noitom-world-root .sw-copy__num,
 #noitom-world-root .sw-copy__eyebrow,
 #noitom-world-root .sw-route { display: none; }
-/* 형광펜 — 카피가 떠오르면(is-lit) 글자 아래쪽 절반에 오렌지 형광펜이 왼쪽부터 그어짐.
+/* 형광펜 — 카피가 떠오르면(is-lit) 글자 아래쪽 절반에 보라 형광펜이 왼쪽부터 그어짐.
    여러 줄이면 줄마다 따로 그어지도록 box-decoration-break: clone */
 #noitom-world-root .sw-hl {
   padding: 0 0.1em;
-  background-image: linear-gradient(100deg, rgba(255, 77, 28, 0.8), rgba(255, 128, 56, 0.72));
+  background-image: linear-gradient(100deg, rgba(110, 80, 255, 0.82), rgba(70, 60, 200, 0.78));
   background-repeat: no-repeat;
   background-position: 0 90%;
   background-size: 0% 40%;
@@ -1335,7 +1344,7 @@ body { animation: pageIn 0.5s var(--ease); }
 }
 #noitom-world-root .sw-copy.is-lit .sw-hl {
   background-size: 100% 40%;
-  transition: background-size 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s;
+  transition: background-size 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 @media (prefers-reduced-motion: reduce) {
   #noitom-world-root .sw-hl { transition: none !important; }
@@ -1409,10 +1418,21 @@ body { animation: pageIn 0.5s var(--ease); }
 }
 /* 카드 자체는 .hcard(서비스 카드)와 공용 — 여기선 월드 위에 뜨는 데 필요한 것만 */
 .world-card {
-  background: linear-gradient(160deg, rgba(20, 28, 70, 0.7), rgba(5, 10, 36, 0.5));
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(160deg, rgba(24, 34, 86, 0.86), rgba(8, 14, 44, 0.74));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-color: rgba(160, 175, 255, 0.28);
+  /* 두께감 — 아래로 겹겹이 쌓인 옆면(그림자 레이어) + 윗면 하이라이트 + 바닥 그림자 */
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.35),
+    0 2px 0 #29357a,
+    0 4px 0 #222d6a,
+    0 6px 0 #1c255a,
+    0 8px 0 #161d4a,
+    0 10px 0 #10163b,
+    0 12px 2px #0b102d,
+    0 28px 50px rgba(0, 0, 0, 0.6);
 }
 .world-card:hover { animation: world-card-float 2.2s ease-in-out infinite; }
 @keyframes world-card-float {
