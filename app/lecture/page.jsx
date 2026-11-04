@@ -124,13 +124,13 @@ export default function LecturePage() {
         </div>
       </section>
 
-      {/* ===== 출강 · 활동 이력 ===== */}
+      {/* ===== 커리어와 출강 이력 ===== */}
       <section className="section">
         <div className="container">
           <div className="section-head reveal">
             <div>
-              <p className="eyebrow">History</p>
-              <h2 className="title-lg">출강 · 활동 이력</h2>
+              <p className="eyebrow">Career</p>
+              <h2 className="title-lg">커리어와 출강 이력</h2>
             </div>
           </div>
           <div className="history">

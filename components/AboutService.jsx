@@ -15,6 +15,7 @@ const SERVICES = [
   {
     num: "02",
     title: "출강/개인과외/촬영",
+    tools: ["기업 출강", "1:1 과외", "영상 촬영"],
     desc: "기업 · 기관 출강, 1:1 개인과외, 영상 촬영까지",
     href: "/lecture",
     cta: "강의 안내",
@@ -23,7 +24,7 @@ const SERVICES = [
   {
     num: "03",
     title: "AI 생성 · 웹앱 배포",
-    tools: ["Claude Code", "Higgsfield", "ComfyUI", "Midjourney", "Web"],
+    tools: ["Claude Code", "Higgsfield", "ComfyUI"],
     desc: "생성형 AI 영상 · 이미지 제작부터 웹 · 앱 제작과 배포까지",
     href: "/works-ai",
     cta: "작업 보기",

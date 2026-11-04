@@ -808,11 +808,32 @@ body.is-locked { overflow: hidden; }
   transform-style: preserve-3d;
   transition: transform 0.6s var(--ease), border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
 }
-.hscroll__grid .hcard__title { font-size: clamp(24px, 2.2vw, 32px); }
-.hscroll__grid .hcard__desc { font-size: 15px; }
+/* 카드끼리 줄 맞춤 — 제목 · 키워드 · 설명 칸의 높이를 고정해서, 내용 길이와 상관없이
+   네 카드의 제목 · 키워드 · 설명 · 링크가 같은 높이에서 시작하도록 */
+.hscroll__grid .hcard { padding: clamp(22px, 2vw, 32px); }
+.hscroll__grid .hcard__title {
+  font-size: clamp(22px, 1.9vw, 28px);
+  line-height: 1.25;
+  height: 2.5em;              /* 2줄 고정 — 1줄 제목도 같은 자리 */
+  display: flex;
+  align-items: flex-end;      /* 1줄 제목은 2줄 칸의 아래쪽(키워드 바로 위)에 */
+}
+.hscroll__grid .hcard__tools { height: 62px; margin-top: 12px; align-content: flex-start; overflow: hidden; }
+.hscroll__grid .hcard__desc {
+  margin-top: 14px;
+  font-size: 15px;
+  line-height: 1.7;
+  height: 5.1em;              /* 3줄 고정 */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.hscroll__grid .hcard__cta { margin-top: 16px; }
 /* 사용 툴 칩 */
 .hcard__tools { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
 .hcard__tools span {
+  white-space: nowrap;
   padding: 3px 10px;
   border-radius: 999px;
   border: 1px solid color-mix(in srgb, var(--hcard-glow) 55%, transparent);
