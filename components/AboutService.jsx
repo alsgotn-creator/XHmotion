@@ -5,7 +5,8 @@ import Link from "next/link";
 const SERVICES = [
   {
     num: "01",
-    title: "2D / 3D",
+    title: "2D/3D 모션그래픽",
+    tools: ["Adobe", "C4D", "Blender"],
     desc: "브랜드 필름, 타이틀 시퀀스, 3D 비주얼, UI 모션",
     href: "/works-2d3d",
     cta: "작업 보기",
@@ -126,6 +127,13 @@ export default function AboutService() {
                 <span className="hcard__shine" aria-hidden="true" />
                 <span className="hcard__num">{s.num}</span>
                 <span className="hcard__title">{s.title}</span>
+                {s.tools ? (
+                  <span className="hcard__tools">
+                    {s.tools.map((t) => (
+                      <span key={t}>{t}</span>
+                    ))}
+                  </span>
+                ) : null}
                 <span className="hcard__desc">{s.desc}</span>
                 <span className="hcard__cta">
                   {s.cta} <span className="arrow">→</span>

@@ -4,8 +4,8 @@
    ========================================================= */
 
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
-/* 로고용 손글씨 폰트 — 획이 단정한 Kalam */
-@import url("https://fonts.googleapis.com/css2?family=Kalam:wght@700&display=swap");
+/* 로고용 손글씨 폰트 — 반듯한 Patrick Hand */
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
 
 /* ---------- 변수 ----------
    톤은 /noitom-world 씬 컬러에서 가져왔습니다 — 블랙에 가까운 딥 네이비 바탕,
@@ -242,9 +242,9 @@ video.mascot {
   justify-content: space-between;
 }
 .logo {
-  font-family: "Kalam", cursive;
-  font-size: 26px;
-  font-weight: 700;
+  font-family: "Patrick Hand", cursive;
+  font-size: 30px;
+  font-weight: 400;
   line-height: 1;
   letter-spacing: -0.01em;
   color: var(--c-text);
@@ -810,6 +810,17 @@ body.is-locked { overflow: hidden; }
 }
 .hscroll__grid .hcard__title { font-size: clamp(24px, 2.2vw, 32px); }
 .hscroll__grid .hcard__desc { font-size: 15px; }
+/* 사용 툴 칩 */
+.hcard__tools { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.hcard__tools span {
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--hcard-glow) 55%, transparent);
+  background: color-mix(in srgb, var(--hcard-glow) 14%, transparent);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--c-text);
+}
 .hscroll__grid .hcard:hover {
   border-color: color-mix(in srgb, var(--hcard-glow) 60%, transparent);
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
@@ -1344,7 +1355,8 @@ body { animation: pageIn 0.5s var(--ease); }
 }
 #noitom-world-root .sw-copy.is-lit .sw-hl {
   background-size: 100% 40%;
-  transition: background-size 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  /* 카피가 떠오르기 시작하고 0.5초 뒤에 긋기 */
+  transition: background-size 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.5s;
 }
 @media (prefers-reduced-motion: reduce) {
   #noitom-world-root .sw-hl { transition: none !important; }
@@ -1426,13 +1438,13 @@ body { animation: pageIn 0.5s var(--ease); }
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.35),
     inset 0 -3px 6px rgba(0, 0, 0, 0.35),
-    0 2px 0 #29357a,
-    0 4px 0 #222d6a,
-    0 6px 0 #1c255a,
-    0 8px 0 #161d4a,
-    0 10px 0 #10163b,
-    0 12px 2px #0b102d,
-    0 28px 50px rgba(0, 0, 0, 0.6);
+    0 1px 0 #29357a,
+    0 2px 0 #222d6a,
+    0 3px 0 #1c255a,
+    0 4px 0 #161d4a,
+    0 5px 0 #10163b,
+    0 6px 1px #0b102d,
+    0 24px 46px rgba(0, 0, 0, 0.6);
 }
 .world-card:hover { animation: world-card-float 2.2s ease-in-out infinite; }
 @keyframes world-card-float {
