@@ -112,6 +112,10 @@ export default function NoitomWorldPage() {
           accent: "#ff4d1c",
           scroll: 1.5,
           linger: 0.4,
+          // 첫 화면엔 카피 없이 영상만 — 스크롤을 시작하면 떠오름
+          copyGreet: false,
+          copyPeak: 0.32,
+          copyWidth: 0.3,
           title: "영상 하나로 끝내지 않습니다.",
           body: "기획·제작·AI·앱·웹 배포까지, 한 사람이 처음부터 끝까지.",
           tags: [],
@@ -172,29 +176,24 @@ export default function NoitomWorldPage() {
     mount();
   }, []);
 
-  // 형광펜 효과 — 엔진이 만든 카피 제목을 span으로 감싸고, 엔진이 매 프레임 바꾸는
-  // 카피의 opacity를 지켜보다가 충분히 보이면(is-lit) 형광펜이 왼쪽부터 그어지게 합니다.
+  // 형광펜 — 엔진이 만든 카피 제목을 span으로 감싸 둡니다. 긋는 정도는 엔진이 스크롤 위치로
+  // 계산해 카피마다 --sw-hl(0~1)로 넣어주고, CSS가 그 값만큼 형광펜 폭을 채웁니다.
   useEffect(() => {
     let raf = 0;
     const tick = () => {
       const root = containerRef.current;
-      if (root) {
-        root.querySelectorAll(".sw-copy").forEach((copy) => {
-          const title = copy.querySelector(".sw-copy__title");
-          if (title && !title.querySelector(".sw-hl")) {
-            const span = document.createElement("span");
-            span.className = "sw-hl";
-            span.textContent = title.textContent;
-            title.textContent = "";
-            title.appendChild(span);
-          }
-          const o = parseFloat(copy.style.opacity || "0");
-          // 카피가 막 떠오르기 시작할 때(opacity 0.15) 바로 긋기 시작
-          if (o > 0.15) copy.classList.add("is-lit");
-          else if (o < 0.05) copy.classList.remove("is-lit");
-        });
-      }
-      raf = requestAnimationFrame(tick);
+      const titles = root ? root.querySelectorAll(".sw-copy__title") : [];
+      const pending = !titles.length;
+      titles.forEach((title) => {
+        if (title.querySelector(".sw-hl")) return;
+        const span = document.createElement("span");
+        span.className = "sw-hl";
+        span.textContent = title.textContent;
+        title.textContent = "";
+        title.appendChild(span);
+      });
+      // 엔진이 카피를 만들기 전이면 다음 프레임에 다시 시도
+      if (pending) raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);

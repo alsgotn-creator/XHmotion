@@ -1,6 +1,18 @@
 import Link from "next/link";
 import Mascot from "@/components/Mascot";
 
+// 경력 — 위에서부터 최신순이 아니라 적어주신 순서 그대로
+const CAREER = [
+  { tag: "전", role: "BAON, OHESHIO 브랜드 영상 디자이너" },
+  { tag: "전", role: "서울비전 2D Flame Team" },
+  { tag: "전", role: "SKT Brand Designer" },
+  { tag: "현", role: "KT AI Generalist" },
+];
+const AWARDS = [
+  { year: "2019", what: "SKT ZEM" },
+  { year: "2024", what: "Hanwha" },
+];
+
 // 출강 · 활동 이력 — 분류별로 기관을 추가/수정하세요.
 const HISTORY = [
   { cat: "기업", en: "Corporate", orgs: ["KT", "SKT"], desc: "사내 디자인 · 영상 실무 교육" },
@@ -121,17 +133,49 @@ export default function LecturePage() {
               <h2 className="title-lg">출강 · 활동 이력</h2>
             </div>
           </div>
-          <ul className="history__list reveal">
-            {HISTORY.flatMap((h) =>
-              h.orgs.map((o) => (
-                <li key={o}>
-                  <span className="history__year">{h.cat}</span>
-                  <span className="history__org">{o}</span>
-                  <span className="history__type">{h.desc}</span>
-                </li>
-              )),
-            )}
-          </ul>
+          <div className="history">
+            {/* 왼쪽: 경력 · 수상 */}
+            <div className="career reveal">
+              <p className="history__label">Career</p>
+              <ul className="career__list">
+                {CAREER.map((c) => (
+                  <li key={c.role} className={c.tag === "현" ? "is-now" : undefined}>
+                    <span className="career__tag">{c.tag}</span>
+                    <span className="career__role">{c.role}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="award">
+                <p className="award__title">
+                  Red Dot <span>2회 수상</span>
+                </p>
+                <ul className="award__list">
+                  {AWARDS.map((a) => (
+                    <li key={a.year}>
+                      <span>{a.year}</span>
+                      {a.what}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* 오른쪽: 출강 이력 */}
+            <div className="reveal">
+              <p className="history__label">Lecture</p>
+              <ul className="history__list">
+                {HISTORY.flatMap((h) =>
+                  h.orgs.map((o) => (
+                    <li key={o}>
+                      <span className="history__year">{h.cat}</span>
+                      <span className="history__org">{o}</span>
+                      <span className="history__type">{h.desc}</span>
+                    </li>
+                  )),
+                )}
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
 

@@ -14,8 +14,8 @@ const SERVICES = [
   },
   {
     num: "02",
-    title: "출강 / 강의",
-    desc: "기업 · 대학 · 교육기관 대상 모션그래픽 · AI 실무 교육",
+    title: "출강/개인과외/촬영",
+    desc: "기업 · 기관 출강, 1:1 개인과외, 영상 촬영까지",
     href: "/lecture",
     cta: "강의 안내",
     glow: "#ff6a2b",
@@ -23,6 +23,7 @@ const SERVICES = [
   {
     num: "03",
     title: "AI 생성 · 웹앱 배포",
+    tools: ["Claude Code", "Higgsfield", "ComfyUI", "Midjourney", "Web"],
     desc: "생성형 AI 영상 · 이미지 제작부터 웹 · 앱 제작과 배포까지",
     href: "/works-ai",
     cta: "작업 보기",
@@ -31,6 +32,7 @@ const SERVICES = [
   {
     num: "04",
     title: "브랜딩",
+    tools: ["Branding", "Guideline", "Character", "Logo", "Film"],
     desc: "브랜드 아이덴티티, 로고 모션, 브랜드 필름",
     href: "/works-branding",
     cta: "작업 보기",

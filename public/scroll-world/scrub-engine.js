@@ -22,6 +22,8 @@
                           // (exactly where the copy peaks) and moves quicker at the
                           // edges. 0 = linear (default). Keep ≤ 0.6; 1 = full pause.
            copyLead: 0.1, // optional 0..1 — fade the copy in this fraction of the dive earlier
+           copyPeak: 0.5, copyWidth: 0.5, // optional — where the copy peaks / how wide it fades
+           copyGreet: false, // optional, first section only — don't show its copy on landing
            eyebrow, title, body, tags:[…],
            cta:{ primary:{label,href}, secondary:{label,href} } }, // last section only
          …
@@ -248,12 +250,20 @@ function mountScrollWorld(container, config) {
       const cy = y + (SECTIONS[i].copyLead || 0) * (seg.end - seg.start);
       const pr = clamp((cy - seg.start) / (seg.end - seg.start), 0, 1);
       const before = cy < seg.start, after = cy > seg.end;
+      // copyPeak / copyWidth (0..1): where in the dive the copy is fully visible, and how far
+      // either side it fades. copyGreet:false stops the first copy showing on landing.
+      const S = SECTIONS[i];
+      const peak = S.copyPeak ?? 0.5, width = S.copyWidth ?? 0.5;
       let cop;
-      if (i === 0) cop = after ? 0 : smooth(1 - pr / 0.62);            // greets on landing
+      if (i === 0 && S.copyGreet !== false) cop = after ? 0 : smooth(1 - pr / 0.62); // greets on landing
       else if (i === N - 1) cop = before ? 0 : smooth(pr / 0.4);       // holds CTA at the end
-      else cop = (before || after) ? 0 : smooth(1 - Math.abs(pr - 0.5) / 0.5);
+      else cop = (before || after) ? 0 : smooth(1 - Math.abs(pr - peak) / width);
       const c = copies[i];
       c.style.opacity = cop;
+      // --sw-hl (0..1): scroll-driven highlighter — empty while the copy fades in, then fills
+      // over a short stretch of scroll (0.3 × width) just before the copy is fully visible.
+      const hlStart = peak - width * 0.6;
+      c.style.setProperty('--sw-hl', (before ? 0 : clamp((pr - hlStart) / (width * 0.3), 0, 1)).toFixed(3));
       c.style.transform = reduce ? 'none' : `translateY(${(0.5 - pr) * 4}vh)`;
       c.style.pointerEvents = cop > 0.5 ? 'auto' : 'none';
     }
