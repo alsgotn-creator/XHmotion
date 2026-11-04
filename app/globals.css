@@ -654,16 +654,29 @@ body.is-locked { overflow: hidden; }
 .lecture-feature .btn { margin-top: 40px; }
 
 /* ---------- About ---------- */
-.about {
-  position: relative;
+/* 170vh 동안 About이 화면에 고정돼 머무름(스크롤 70vh만큼) → 그 뒤 위로 빠짐 */
+.about { position: relative; height: 170vh; }
+.about__sticky {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: calc(var(--header-h) + 24px) 0 48px;
   /* 사진은 오른쪽에서만 살짝 비치고, 글이 있는 왼쪽은 네이비로 덮음 */
   background-image:
-    linear-gradient(90deg, rgba(5, 10, 36, 0.97) 0%, rgba(5, 10, 36, 0.9) 45%, rgba(5, 10, 36, 0.62) 100%),
+    linear-gradient(90deg, rgba(5, 10, 36, 0.97) 0%, rgba(5, 10, 36, 0.93) 55%, rgba(5, 10, 36, 0.72) 100%),
     url("/assets/images/about-bg.jpg");
   background-size: cover;
   background-position: center;
 }
-.about__inner { max-width: 640px; }
+/* 작은 화면에선 내용이 한 화면보다 길 수 있어 고정 없이 일반 섹션으로 */
+@media (max-width: 640px), (max-height: 640px) {
+  .about { height: auto; }
+  .about__sticky { position: relative; padding: clamp(80px, 12vw, 160px) 0; }
+}
+.about__inner { max-width: 680px; }
 /* 제목 ↔ 설명 사이 여백을 넉넉히 */
 .about__title { margin-bottom: clamp(32px, 4vw, 48px); }
 .about__text { font-size: 17px; line-height: 1.85; color: var(--c-text-sub); }
@@ -711,8 +724,9 @@ body.is-locked { overflow: hidden; }
 .hcard {
   position: relative;
   flex: 0 0 auto;
-  width: clamp(280px, 36vw, 520px);
-  height: clamp(300px, 52vh, 480px);
+  /* 월드 끝 선택 카드(.world-card)와 같은 크기 — 3장이 한 줄에 들어가는 폭 */
+  width: clamp(280px, 30vw, 440px);
+  height: clamp(300px, 52vh, 460px);
   display: flex;
   flex-direction: column;
   padding: clamp(28px, 3vw, 44px);
@@ -1140,6 +1154,10 @@ body { animation: pageIn 0.5s var(--ease); }
 /* 카피 제목의 \n을 줄바꿈으로 */
 #noitom-world-root .sw-copy__title { white-space: pre-line; }
 /* 첫 번째 카피 제목은 한 줄 — 화면 폭에 맞춰 글자 크기를 줄여 넘치지 않게 */
+#noitom-world-root .sw-copy:nth-child(3) .sw-copy__title {
+  white-space: pre;
+  font-size: min(clamp(2rem, 4.4vw, 3.5rem), 5.4vw);
+}
 #noitom-world-root .sw-copy:first-child .sw-copy__title {
   white-space: nowrap;
   font-size: min(clamp(2rem, 4.4vw, 3.5rem), 4.8vw);
@@ -1197,75 +1215,27 @@ body { animation: pageIn 0.5s var(--ease); }
   z-index: 1;
   display: flex;
   gap: 24px;
-  width: min(1080px, 94vw);
+  justify-content: center;
   padding: 0 24px;
 }
+/* 카드 자체는 .hcard(서비스 카드)와 공용 — 여기선 월드 위에 뜨는 데 필요한 것만 */
 .world-card {
-  position: relative;
-  flex: 1;
-  min-height: 360px;
-  display: flex;
-  flex-direction: column;
-  padding: 40px 28px;
-  border-radius: 22px;
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0.14));
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(160deg, rgba(20, 28, 70, 0.55), rgba(5, 10, 36, 0.35));
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
-  overflow: hidden;
-  text-decoration: none;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  animation: world-card-rest 0s;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
 }
-.world-card:hover {
-  animation: world-card-float 2.2s ease-in-out infinite;
-  box-shadow: 0 32px 70px rgba(0, 0, 0, 0.6), 0 0 0 1px var(--card-accent, #fff);
-}
+.world-card:hover { animation: world-card-float 2.2s ease-in-out infinite; }
 @keyframes world-card-float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  0%, 100% { transform: translateY(-8px); }
+  50% { transform: translateY(-16px); }
 }
-.world-card__glare {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.35), transparent 55%);
-  opacity: 0;
-  transition: opacity 0.25s ease;
-  pointer-events: none;
-}
-.world-card:hover .world-card__glare { opacity: 1; }
-.world-card__eyebrow {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--card-accent, #fff);
-}
-.world-card__label {
-  margin-top: 14px;
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: #fff;
-}
-.world-card__desc {
-  margin-top: 10px;
-  font-size: 14px;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.65);
-}
-.world-card__arrow {
-  margin-top: auto;
-  align-self: flex-end;
-  font-size: 20px;
-  color: #fff;
-  transition: transform 0.25s ease;
-}
-.world-card:hover .world-card__arrow { transform: translate(4px, -4px); }
 
 @media (max-width: 760px) {
-  .world-choice__cards { flex-direction: column; width: min(420px, 86vw); }
-  .world-card { min-height: 160px; }
+  .world-choice__cards { flex-direction: column; align-items: center; width: min(420px, 86vw); gap: 12px; }
+  .world-card { width: 100%; height: auto; min-height: 0; padding: 22px 24px; }
+  .world-card .hcard__title { margin-top: 10px; font-size: 24px; }
+  .world-card .hcard__desc { margin-top: 6px; font-size: 14px; }
+  .world-card .hcard__cta { margin-top: 14px; padding-top: 12px; }
 }
 

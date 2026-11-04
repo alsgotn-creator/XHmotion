@@ -96,34 +96,38 @@ export default function AboutService() {
 
   return (
     <>
-      <section id="about" className="section about">
-        <div className="container">
-          <div className="about__inner reveal">
-            <p className="eyebrow">About</p>
-            <h2 className="title-lg about__title">
-              안녕하세요,
-              <br />
-              Noitom입니다.
-            </h2>
-            <p className="about__text">
-              2D/3D 모션, AI 비주얼을 중심으로 작업하고 있습니다. 메시지가 가장 잘 전달되는
-              움직임을 찾는 것을 좋아합니다.
-            </p>
-            <p className="about__text">
-              기획 단계부터 함께 고민하며, 결과물이 브랜드의 언어로 오래 쓰일 수 있도록
-              디자인합니다.
-            </p>
+      <section id="about" className="about">
+        {/* 섹션 높이를 화면보다 길게 두고 안쪽을 sticky로 고정 — 월드가 끝난 뒤 About이
+            바로 밀려 올라가지 않고 잠시 머물렀다가 다음 섹션으로 넘어갑니다. */}
+        <div className="about__sticky">
+          <div className="container">
+            <div className="about__inner reveal">
+              <p className="eyebrow">About</p>
+              <h2 className="title-lg about__title">
+                왜 N0it0M에게
+                <br />
+                영상을 맡겨야 할까요?
+              </h2>
+              <p className="about__text">
+                2D/3D 모션, AI 영상 제작 및 웹사이트 제작을 중심으로 작업하고 있기 때문이에요.
+                절대 여러 개의 의뢰를 한번에 실행하지 않고 하나의 클라이언트와 소통해요. 메시지가
+                가장 잘 전달되는 움직임을 찾기 위해 충분히 얘기를 나누고 콘티를 나눠요.
+              </p>
+              <p className="about__text">
+                기획 단계부터 결과물이 브랜드의 언어로 쓰일 수 있도록 디자인해요.
+              </p>
 
-            <div className="stats">
-              {STATS.map((s) => (
-                <div key={s.label}>
-                  <p className="stats__num">
-                    {s.num}
-                    <sup>+</sup>
-                  </p>
-                  <p className="stats__label">{s.label}</p>
-                </div>
-              ))}
+              <div className="stats">
+                {STATS.map((s) => (
+                  <div key={s.label}>
+                    <p className="stats__num">
+                      {s.num}
+                      <sup>+</sup>
+                    </p>
+                    <p className="stats__label">{s.label}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

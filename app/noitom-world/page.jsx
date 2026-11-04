@@ -8,40 +8,44 @@ import AboutService from "@/components/AboutService";
 const CHOICES = [
   {
     id: "content",
-    eyebrow: "Watch",
+    num: "01 · Watch",
     label: "비디오 콘텐츠",
     desc: "작업한 영상들을 둘러보세요",
+    cta: "영상 보기",
     href: "/video",
-    accent: "#ff4d1c",
+    glow: "#3d6bff",
   },
   {
     id: "lecture",
-    eyebrow: "Learn",
+    num: "02 · Learn",
     label: "강의 · 출강",
     desc: "기업·기관 강의와 1:1 코칭",
+    cta: "강의 안내",
     href: "/lecture",
-    accent: "#073bc7",
+    glow: "#ff6a2b",
   },
   {
     id: "contact",
-    eyebrow: "Talk",
+    num: "03 · Talk",
     label: "메시지 남기기",
     desc: "프로젝트 문의, 컨택하기",
+    cta: "문의하기",
     href: "/contact",
-    accent: "#8a8a8a",
+    glow: "#8b6bff",
   },
 ];
 
-// 글래스모피즘 카드 — 호버하면 위아래로 살짝 떠오르는(부유) 인터랙션.
+// "이런 작업이 가능합니다"(AboutService.jsx)의 가로 스크롤 카드와 같은 .hcard 스타일 —
+// 크기 · 글래스 톤 · 글로우를 맞추고, 월드 위에 뜨는 카드라 블러와 부유 호버만 더합니다.
 function FloatCard({ choice }) {
   return (
-    <Link href={choice.href} className="world-card" style={{ "--card-accent": choice.accent }}>
-      <span className="world-card__glare" aria-hidden="true" />
-      <span className="world-card__eyebrow">{choice.eyebrow}</span>
-      <span className="world-card__label">{choice.label}</span>
-      <span className="world-card__desc">{choice.desc}</span>
-      <span className="world-card__arrow" aria-hidden="true">
-        →
+    <Link href={choice.href} className="hcard world-card" style={{ "--hcard-glow": choice.glow }}>
+      <span className="hcard__glow" aria-hidden="true" />
+      <span className="hcard__num">{choice.num}</span>
+      <span className="hcard__title">{choice.label}</span>
+      <span className="hcard__desc">{choice.desc}</span>
+      <span className="hcard__cta">
+        {choice.cta} <span className="arrow">→</span>
       </span>
     </Link>
   );
@@ -134,7 +138,7 @@ export default function NoitomWorldPage() {
           scroll: 1.3,
           // 약 1초(이 씬 영상 10초 기준 10%) 일찍 카피가 뜨도록
           copyLead: 0.1,
-          title: "오랜 시간 축적된 경험으로 오늘도 그래픽에 생명력을 불어넣어요.",
+          title: "수많은 제작경험과 강의 노하우로\n모션그래픽의 정수를 선사합니다.",
           body: "모션그래픽 디자이너 N0it0M입니다",
           tags: [],
         },
