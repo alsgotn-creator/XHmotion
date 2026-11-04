@@ -172,6 +172,33 @@ export default function NoitomWorldPage() {
     mount();
   }, []);
 
+  // 형광펜 효과 — 엔진이 만든 카피 제목을 span으로 감싸고, 엔진이 매 프레임 바꾸는
+  // 카피의 opacity를 지켜보다가 충분히 보이면(is-lit) 형광펜이 왼쪽부터 그어지게 합니다.
+  useEffect(() => {
+    let raf = 0;
+    const tick = () => {
+      const root = containerRef.current;
+      if (root) {
+        root.querySelectorAll(".sw-copy").forEach((copy) => {
+          const title = copy.querySelector(".sw-copy__title");
+          if (title && !title.querySelector(".sw-hl")) {
+            const span = document.createElement("span");
+            span.className = "sw-hl";
+            span.textContent = title.textContent;
+            title.textContent = "";
+            title.appendChild(span);
+          }
+          const o = parseFloat(copy.style.opacity || "0");
+          if (o > 0.6) copy.classList.add("is-lit");
+          else if (o < 0.1) copy.classList.remove("is-lit");
+        });
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
   return (
     <>
       <Script

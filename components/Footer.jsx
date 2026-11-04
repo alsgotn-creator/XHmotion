@@ -1,4 +1,3 @@
-import Link from "next/link";
 import FooterYear from "./FooterYear";
 
 export default function Footer() {
@@ -6,11 +5,6 @@ export default function Footer() {
     <footer className="footer">
       <div className="container">
         <div className="footer__top">
-          <p className="footer__cta">
-            함께 만들 프로젝트가 있나요?
-            <br />
-            <Link href="/contact">이야기 나눠요 →</Link>
-          </p>
           <div className="footer__sns">
             <a href="#" target="_blank" rel="noopener">Instagram</a>
             <a href="#" target="_blank" rel="noopener">Vimeo</a>

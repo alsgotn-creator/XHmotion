@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Mascot from "@/components/Mascot";
-import ThumbNav from "@/components/ThumbNav";
 
 // 출강 · 활동 이력 — 분류별로 기관을 추가/수정하세요.
 const HISTORY = [
@@ -91,7 +90,7 @@ export const metadata = {
 export default function LecturePage() {
   return (
     <>
-      {/* ===== 타이틀 ===== */}
+      {/* ===== 타이틀 + 강의 문의 (맨 위) ===== */}
       <section className="page-head">
         <div className="container reveal">
           <p className="eyebrow">Lecture</p>
@@ -100,10 +99,20 @@ export default function LecturePage() {
             <Mascot />
           </h1>
           <p className="lead">모션그래픽 실무부터 AI 웹·영상 제작, 업무 자동화(AX)까지. 현업에서 직접 쓰는 노하우를 대상과 목적에 맞게 커리큘럼으로 구성해 드립니다.</p>
+
+          <div className="lecture-cta">
+            <div>
+              <p className="lecture-cta__title">강의를 계획하고 계신가요?</p>
+              <p className="lecture-cta__text">일정과 대상만 알려주시면 맞춤 커리큘럼을 제안해 드릴게요.</p>
+            </div>
+            <Link href="/contact?type=lecture" className="btn btn--primary">
+              강의 문의하기 <span className="arrow">→</span>
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* ===== 출강 · 활동 이력 (맨 위) ===== */}
+      {/* ===== 출강 · 활동 이력 ===== */}
       <section className="section">
         <div className="container">
           <div className="section-head reveal">
@@ -112,26 +121,17 @@ export default function LecturePage() {
               <h2 className="title-lg">출강 · 활동 이력</h2>
             </div>
           </div>
-          <ThumbNav
-            label="출강 · 활동 이력"
-            items={HISTORY.map((h) => ({
-              key: h.cat,
-              thumbTop: h.en,
-              thumbTitle: h.cat,
-              content: (
-                <>
-                  <p className="tnav__eyebrow">{h.en}</p>
-                  <h3 className="tnav__title">{h.cat}</h3>
-                  <ul className="tnav__orgs">
-                    {h.orgs.map((o) => (
-                      <li key={o}>{o}</li>
-                    ))}
-                  </ul>
-                  <p className="tnav__desc">{h.desc}</p>
-                </>
-              ),
-            }))}
-          />
+          <ul className="history__list reveal">
+            {HISTORY.flatMap((h) =>
+              h.orgs.map((o) => (
+                <li key={o}>
+                  <span className="history__year">{h.cat}</span>
+                  <span className="history__org">{o}</span>
+                  <span className="history__type">{h.desc}</span>
+                </li>
+              )),
+            )}
+          </ul>
         </div>
       </section>
 
@@ -144,22 +144,16 @@ export default function LecturePage() {
               <h2 className="title-lg">강의 형태</h2>
             </div>
           </div>
-          <ThumbNav
-            label="강의 형태"
-            items={FORMATS.map((f) => ({
-              key: f.title,
-              thumbTop: f.tag,
-              thumbTitle: f.title,
-              content: (
-                <>
-                  <p className="tnav__eyebrow">{f.tag}</p>
-                  <h3 className="tnav__title">{f.title}</h3>
-                  <p className="tnav__desc">{f.desc}</p>
-                  <p className="tnav__meta">{f.meta}</p>
-                </>
-              ),
-            }))}
-          />
+          <div className="formats">
+            {FORMATS.map((f) => (
+              <article className="format reveal" key={f.title}>
+                <p className="format__tag">{f.tag}</p>
+                <h3 className="format__title">{f.title}</h3>
+                <p className="format__desc">{f.desc}</p>
+                <p className="format__meta">{f.meta}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -173,29 +167,29 @@ export default function LecturePage() {
             </div>
             <p className="lead">아래 주제를 조합하거나, 원하는 내용으로 새로 구성할 수 있어요.</p>
           </div>
-          <ThumbNav
-            label="강의 주제"
-            items={COURSES.map((c, i) => ({
-              key: c.title,
-              thumbTop: String(i + 1).padStart(2, "0"),
-              thumbTitle: c.title,
-              content: (
-                <>
-                  <p className="tnav__eyebrow">
-                    {String(i + 1).padStart(2, "0")} · {c.level}
-                  </p>
-                  <h3 className="tnav__title">{c.title}</h3>
-                  <p className="tnav__desc">{c.desc}</p>
-                  <ul className="tnav__list">
+
+          <div className="curriculum">
+            {COURSES.map((c, i) => (
+              <div className="course reveal" key={c.title}>
+                <p className="course__num">{String(i + 1).padStart(2, "0")}</p>
+                <div>
+                  <h3 className="course__title">{c.title}</h3>
+                  <span className="course__level">{c.level}</span>
+                </div>
+                <div className="course__desc">
+                  {c.desc}
+                  <ul>
                     {c.points.map((pt) => (
                       <li key={pt}>{pt}</li>
                     ))}
                   </ul>
-                  <p className="tnav__meta">{c.time}</p>
-                </>
-              ),
-            }))}
-          />
+                </div>
+                <div className="course__time-wrap">
+                  <p className="course__time">{c.time}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -208,21 +202,14 @@ export default function LecturePage() {
               <h2 className="title-lg">진행 과정</h2>
             </div>
           </div>
-          <ThumbNav
-            label="진행 과정"
-            items={PROCESS.map((st, i) => ({
-              key: st.title,
-              thumbTop: `STEP ${String(i + 1).padStart(2, "0")}`,
-              thumbTitle: st.title,
-              content: (
-                <>
-                  <p className="tnav__step">{String(i + 1).padStart(2, "0")}</p>
-                  <h3 className="tnav__title">{st.title}</h3>
-                  <p className="tnav__desc">{st.desc}</p>
-                </>
-              ),
-            }))}
-          />
+          <ol className="process reveal">
+            {PROCESS.map((st) => (
+              <li key={st.title}>
+                <h3>{st.title}</h3>
+                <p>{st.desc}</p>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
@@ -256,16 +243,6 @@ export default function LecturePage() {
         </div>
       </section>
 
-      {/* ===== CTA ===== */}
-      <section className="section">
-        <div className="container cta reveal">
-          <h2 className="title-lg">강의를 계획하고 계신가요?</h2>
-          <p className="lead">일정과 대상만 알려주시면 맞춤 커리큘럼을 제안해 드릴게요.</p>
-          <Link href="/contact?type=lecture" className="btn btn--primary">
-            강의 문의하기 <span className="arrow">→</span>
-          </Link>
-        </div>
-      </section>
     </>
   );
 }
