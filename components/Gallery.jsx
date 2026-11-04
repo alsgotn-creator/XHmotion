@@ -47,7 +47,7 @@ function buildFeaturedList(works) {
   return [...featured, ...rest].slice(0, target);
 }
 
-export default function Gallery({ galleryKey }) {
+export default function Gallery({ galleryKey, columns }) {
   const gridRef = useRef(null);
   const hoverTimer = useRef(null);
   const [openId, setOpenId] = useState(null);
@@ -57,7 +57,7 @@ export default function Gallery({ galleryKey }) {
     galleryKey === "featured"
       ? buildFeaturedList(WORKS)
       : WORKS.filter((work) => work.section === galleryKey);
-  const cols = Math.max(1, Math.ceil(list.length / 2));
+  const cols = columns || Math.max(1, Math.ceil(list.length / 2));
   const thumbSizes = `(max-width: 640px) 50vw, ${Math.round(100 / cols)}vw`;
 
   useEffect(() => {

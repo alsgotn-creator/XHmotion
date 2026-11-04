@@ -1,5 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // 기본 주소는 월드 랜딩으로. 기존 홈(영상 갤러리)은 /video로 옮김.
+  // permanent: false(307) — 나중에 랜딩을 바꿔도 브라우저에 캐시되지 않도록.
+  async redirects() {
+    return [{ source: "/", destination: "/noitom-world", permanent: false }];
+  },
+
   // output: "export" 를 뺐습니다 — 이제 정적 파일이 아니라 Node 서버(Vercel 등)에서
   // 돌아가는 동적 사이트입니다. Server Action/Route Handler 같은 백엔드 기능을 쓰려면
   // 이 설정이어야 합니다. 대신 더 이상 "아무 정적 호스팅에나 올리기"는 안 되고,

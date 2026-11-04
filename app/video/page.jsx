@@ -6,7 +6,9 @@ import { TOOLS } from "@/data/tools";
 
 const MARQUEE_WORDS = ["AI", "2D", "3D", "Graphic", "Lecture"];
 
-export default function HomePage() {
+export const metadata = { title: "Video" };
+
+export default function VideoPage() {
   return (
     <>
       <Hero />
@@ -36,7 +38,7 @@ export default function HomePage() {
 
       {/* ===== 대표 작품 (제목 없이, 좌우 꽉 차게) — 네비게이션 "VIDEO"가 여기로 스크롤됩니다 ===== */}
       <section id="work" className="section" style={{ paddingTop: 0, paddingBottom: 0 }}>
-        <Gallery galleryKey="featured" />
+        <Gallery galleryKey="featured" columns={2} />
         <div className="work-links reveal">
           <Link href="/works-2d3d" className="work-links__item">
             2D·3D 전체 보기 <span className="arrow">→</span>

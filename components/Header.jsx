@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 
 const NAV_LINKS = [
   { href: "/noitom-world", label: "WORLD" },
-  { href: "/#work", label: "VIDEO" },
+  { href: "/video#work", label: "VIDEO" },
   { href: "/lecture", label: "LECTURE" },
   { href: "/contact", label: "CONTACT" },
 ];
@@ -48,7 +48,7 @@ export default function Header() {
       };
     }
 
-    if (pathname !== "/") {
+    if (pathname !== "/video") {
       setOnDark(false);
       return;
     }
@@ -112,7 +112,7 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className={pathname === link.href ? "is-active" : undefined}
+              className={pathname === link.href.split("#")[0] ? "is-active" : undefined}
             >
               {link.label}
             </Link>

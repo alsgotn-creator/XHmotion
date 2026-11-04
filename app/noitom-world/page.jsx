@@ -11,7 +11,7 @@ const CHOICES = [
     eyebrow: "Watch",
     label: "비디오 콘텐츠",
     desc: "작업한 영상들을 둘러보세요",
-    href: "/",
+    href: "/video",
     accent: "#ff4d1c",
   },
   {
