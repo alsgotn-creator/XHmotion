@@ -123,6 +123,18 @@ main { padding-top: 0; }
 }
 .section--dark .lead { color: rgba(255, 255, 255, 0.6); }
 
+/* 대제목 끝에 붙는 손 흔드는 캐릭터 (Mascot.jsx) — 글자 크기에 비례 */
+video.mascot {
+  display: inline-block;
+  height: 1.6em;
+  width: auto;
+  aspect-ratio: 376 / 480;
+  margin: -0.45em 0 -0.12em 0.12em;
+  vertical-align: bottom;
+  object-fit: contain;
+  pointer-events: none;
+}
+
 /* 페이지 상단 타이틀 영역 */
 .page-head { padding: clamp(80px, 12vw, 140px) 0 clamp(40px, 6vw, 72px); }
 .page-head .lead { margin-top: 24px; }

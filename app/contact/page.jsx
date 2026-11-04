@@ -1,4 +1,5 @@
 import ContactShop from "@/components/ContactShop";
+import Mascot from "@/components/Mascot";
 
 export const metadata = {
   title: "Contact",
@@ -15,6 +16,7 @@ export default function ContactPage() {
             원하는 콘텐츠만
             <br />
             원하는 방식대로
+            <Mascot />
           </h1>
           <p className="lead">
             필요한 작업을 목록에서 골라 문의를 남겨주세요. 영업일 기준 1~2일 안에 답변드립니다.

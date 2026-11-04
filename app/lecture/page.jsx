@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Mascot from "@/components/Mascot";
 
 export const metadata = {
   title: "Lecture",
@@ -12,7 +13,10 @@ export default function LecturePage() {
       <section className="page-head">
         <div className="container reveal">
           <p className="eyebrow">Lecture</p>
-          <h1 className="title-xl">출강 · 강의</h1>
+          <h1 className="title-xl">
+            출강 · 강의
+            <Mascot />
+          </h1>
           <p className="lead">모션그래픽 실무부터 AI 웹·영상 제작, 업무 자동화(AX)까지. 현업에서 직접 쓰는 노하우를 대상과 목적에 맞게 커리큘럼으로 구성해 드립니다.</p>
         </div>
       </section>
